@@ -1,0 +1,237 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{%  load staticfiles %}
+
+{% block extrastyles %}
+    <link href="{% static 'dashboard/css/products.css' %}" rel="stylesheet">
+    <link href="{% static 'dashboard/css/bootstrap-datetimepicker.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_headerscripts %}
+     <script src="{% static 'dashboard/js/moment.js' %}"></script>
+     <script src="{% static 'dashboard/js/bootstrap-datetimepicker.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <h3>{{ title }}</h3>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{% url 'dashboard:product_list' %}" class="btn btn-default">Go back</a>
+                    {% if form.instance.pk %}
+                    <a href="{% url 'dashboard:product_delete' form.instance.pk%}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+
+                <div class="clearfix"></div>
+
+
+                {% include 'dashboard/partials/messages.html' %}
+
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+                <section class="panel">
+                    <header class="panel-heading">Product information</header>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="name" class="col-lg-2 control-label">Name: </label>
+                            <div class="col-lg-10">
+                                {{ form.name|addcss:"form-control" }}
+                                {{ form.name.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-lg-2 control-label">Description: </label>
+                            <div class="col-lg-10">
+                                {{ form.description|addcss:"form-control" }}
+                                {{ form.description.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="unit" class="col-lg-2 control-label">Unit: </label>
+                            <div class="col-lg-10">
+                                {{ form.unit|addcss:"form-control" }}
+                                {{ form.unit.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="store_category" class="col-lg-2 control-label">Store Category: </label>
+                            <div class="col-lg-10">
+                                {{ form.store_category|addcss:"form-control" }}
+                                {{ form.store_category.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="promo_sticker" class="col-lg-2 control-label">Promo sticker: </label>
+                            <div class="col-lg-10">
+                                {{ form.promo_sticker|addcss:"form-control" }}
+                                {{ form.promo_sticker.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="is_merchant_featured" class="col-lg-2 control-label">Merchant featured: </label>
+                            <div class="col-lg-10">
+                                {{ form.is_merchant_featured }}
+                                {{ form.is_merchant_featured.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="order_priority" class="col-lg-2 control-label">Order priority: </label>
+                            <div class="col-lg-10">
+                                {{ form.order_priority|addcss:"form-control" }}
+                                {{ form.order_priority.errors }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visibility" class="col-lg-2 control-label">Visibility: </label>
+                            <div class="col-lg-10">
+                                {{ form.visibility }}
+                                {{ form.visibility.errors }}
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <header class="panel-heading">Product SKU</header>
+                    <div class="row sku-table-btn-container">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-success pull-right" id="sku_col_add_btn">+Add custom attribute</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="sku-table-container">
+                            <input type="hidden" id="extra_sku_attributes" name="extra_sku_attributes"/>
+                            <table class="table table-striped table-bordered" id="sku_table">
+                                {{ skurecord_formset.management_form }}
+                                {{ skurecord_formset.non_form_errors }}
+                                <thead>
+                                    <tr>
+                                        <th>Delete</th>
+                                        <th>SKU</th>
+                                        <th>Quantity</th>
+                                        <th>Retail Price</th>
+                                        <th>Sale Price</th>
+                                        <th>On Sale</th>
+                                        {% for attr in variant_types %}
+                                            <th width="150px" id="extra_header_{{ attr }}">
+                                                {{ attr }}&nbsp;&nbsp;
+                                                <i class="fa fa-times-circle" style="cursor: pointer" 
+                                                   id="extra_header_remove_{{attr }}">
+                                                   </i>
+                                            </th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for skurecord_form in skurecord_formset %}
+                                        <tr>
+                                            <td>{{ skurecord_form.id }}{{ skurecord_form.DELETE }}</td>
+                                            <td>{{ skurecord_form.code }} <br/> {{ skurecord_form.code.errors }}</td>
+                                            <td>{{ skurecord_form.quantity }} <br/> {{ skurecord_form.quantity.errors }}</td>
+                                            <td>{{ skurecord_form.skuprice_form.id }}{{ skurecord_form.skuprice_form.sku }}{{ skurecord_form.skuprice_form.retail_price }} <br/> {{ skurecord_form.skuprice_form.retail_price.errors }}</td>
+                                            <td>{{ skurecord_form.skuprice_form.sale_price }} <br/> {{ skurecord_form.skuprice_form.sale_price.errors }}</td>
+                                            <td>{{ skurecord_form.skuprice_form.on_sale }} <br/> {{ skurecord_form.skuprice_form.on_sale.errors }} </td>
+                                            {% for attr in variant_types%}
+                                                <td id="extra_attribute_col-{{ forloop.parentloop.counter0 }}-{{ attr }}">
+                                                    <input id="id_{{ attr }}" 
+                                                           type="text" name="{{skurecord_formset.prefix}}-{{ forloop.parentloop.counter0 }}-{{ attr }}"
+                                                           
+                                                           value="{{ skurecord_form.get_extra_sku_attributes|get_item:attr}}"/>
+                                                
+                                                </td>
+                                            {%  endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row sku-table-btn-container">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-success pull-left" id="sku_row_add_btn">+Add new row</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <header class="panel-heading">Product images</header>
+                    <div class="panel-body">
+                        {{ image_formset.management_form }}
+                        {{ image_formset.non_form_errors }}
+                        <ol class='upload-image'>
+                            {% for image_form in image_formset %}
+                                {% include "dashboard/partials/product_images.html" with form=image_form %}
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </section>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- Add new column modal -->
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="sku_column_add_modal" class="modal modal-info fade">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                      <h4 class="modal-title">Add custom attribute for Product SKU</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div role="form" class="form-horizontal">
+                          <div class="form-group">
+                              <label for="newSkuColumn" class="col-lg-4 control-label">Attribute name :</label>
+                              <div class="col-lg-8">
+                                  <input type="text" class="form-control" id="newSkuColumn" name="newSkuColumn" placeholder="Enter new attribute name">
+                                  <ul class="errorlist" id="newSkuColumnValidation" style="display: none;"><li>This field is required.</li></ul>
+                              </div>
+                          </div>
+                          <button type="button" class="btn btn-default" id="addNewAttribute">Add</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+{% endblock %}
+
+
+{% block extrascripts %}
+    <script src="{% static 'dashboard/js/products.js' %}"></script>
+{% endblock %}
+
+
+{% block onbodyload %}
+    initFileReader();
+    var productSkuTable = new ProductSKUTable('{{ skurecord_formset.prefix }}', 
+    6 + {{ form.instance.product_variant_types.all.count }},
+    [
+        {% for attr in variant_types %}
+            "{{attr|escapejs}}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+        {% if any_errors %} true {% else %} false {% endif %}
+    );
+    productSkuTable.Init();
+{% endblock %}

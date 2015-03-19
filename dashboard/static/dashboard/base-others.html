@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="Bazaar">
+	    <meta name="keyword" content="Bazaar">
+	    <title>Bazaar</title>
+	
+	    <!-- Essential CSS -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/bootstrap-reset.min.css" rel="stylesheet">
+	    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	    <!-- End Essential -->
+	 
+	    <!-- Template Layout CSS -->
+	    <link href="css/style.min.css" rel="stylesheet">
+	    <link href="css/common.min.css" rel="stylesheet">
+	    <!-- End Template Layout -->
+  	</head>
+  	<body>
+  		<div class="header blue-bg">
+  			<a href="" class="logo">
+  				<img src="img/logo-bazaar.png">
+  			</a>
+  				
+  			<ul class="nav top-menu hidden-xs hidden-sm pull-left notify-row">
+  				<li class="dropdown icon">
+  					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+  						<i class="fa fa-tasks"></i>
+  						<span class="badge bg-important">6</span>
+  					</a>
+  					<ul class="dropdown-menu extended notification">
+  						<div class="notify-arrow notify-arrow-success"></div>
+  						<li>
+  					    	<p class="success">You have 7 Pending Task</p>
+  						</li>
+  						<li>
+  						    <a href="#">
+  						        <span class="label label-info">
+  						        <i class="fa fa-thumbs-up"></i></span>
+  						        	XX just liked your item
+  						        <span class="small italic">34 mins</span>
+  						    </a>
+  						</li>
+  						<li>
+  						    <a href="#">See all pending Task</a>
+  						</li>
+  					</ul>
+  				</li>
+  				<li class="dropdown icon">
+  					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+  						<i class="fa fa-bell"></i>
+  						<span class="badge bg-important">6</span>
+  					</a>
+  					<ul class="dropdown-menu extended notification">
+  						<div class="notify-arrow notify-arrow-info"></div>
+  						<li>
+  					    	<p class="info">You have 7 new notifications</p>
+  						</li>
+  						<li>
+  						    <a href="#">
+  						        <span class="label label-info">
+  						        <i class="fa fa-thumbs-up"></i></span>
+  						        	XX just liked your item
+  						        <span class="small italic">34 mins</span>
+  						    </a>
+  						</li>
+  						<li>
+  						    <a href="#">
+  						        <span class="label label-warning">
+  						        <i class="fa fa-user"></i></span>
+  						        	XX just following you
+  						        <span class="small italic">1 Hours</span>
+  						    </a>
+  						</li>
+  						<li>
+  						    <a href="#">
+  						        <span class="label label-warning">
+  						        <i class="fa fa-tags"></i></span>
+  						        	XX bookmarked you!
+  						        <span class="small italic">1 Hours</span>
+  						    </a>
+  						</li>
+  						<li>
+  						    <a href="#">See all notifications</a>
+  						</li>
+  					</ul>
+  				</li>
+  			</ul>
+  			
+  			<ul class="nav pull-right top-menu">
+  		      <li>
+  		          <input type="text" class="form-control search" placeholder="Search">
+  		      </li>
+  		      <li class="icon">
+  		          <span> 
+  		          	<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" class="btn-collapse-menu">
+  		          	<i class="fa fa-reorder"></i></a> 
+  		          </span>
+  		      </li>
+  		      <li class="icon">
+  		          <span> 
+  		          	<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" class="smartMsgBox">
+  		          	<i class="fa fa-sign-out"></i></a> 
+  		          </span>
+  		      </li>
+  		  </ul>
+  		</div>
+  		
+  		<div class="sidebar hidden-xs hidden-sm">
+  			<div class="loginInfo">
+  				<span>
+  					<a href="#">
+  						<img src="img/default-avatar.jpeg" alt="me" class="online" /> 
+  						<span> Jon Due </span>
+  						<i class="fa fa-angle-down"></i>
+  					</a>
+  				</span>
+  			</div>
+  			
+  			<nav>
+				<ul>
+					<li>
+						<a href="index.html" title="Dashboard">
+							<i class="fa fa-lg fa-fw fa-home"></i>
+							<span class="menu-item-parent">Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-inbox"></i> 
+							<span class="menu-item-parent">Sample Menu 1</span>
+							<span class="badge pull-right inbox-badge">14</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-bar-chart-o"></i> 
+							<span class="menu-item-parent">With Child</span>
+							<b class="collapse-sign">
+								<em class="fa fa-plus-square-o"></em>
+							</b>
+						</a>
+						
+						<ul>
+							<li>
+								<a href="#">Child 1</a>
+							</li>
+							<li>
+								<a href="#">Child 2</a>
+							</li>
+							<li>
+								<a href="#">Child 3</a>
+							</li>
+							<li>
+								<a href="#">Child Badge 
+									<span class="badge pull-right inbox-badge bg-color-yellow">new</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-table"></i> 
+							<span class="menu-item-parent">With Child 2</span>
+						</a>
+						<ul>
+							<li>
+								<a href="table.html">Child 1</a>
+							</li>
+							<li>
+								<a href="datatables.html">Child 2
+									<span class="badge inbox-badge bg-color-greenLight">v1.10</span>
+								</a>
+							</li>
+							<li>
+								<a href="jqgrid.html">Child 3</a>
+							</li>
+						</ul>
+					</li>
+				
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-calendar"><em>3</em></i> 
+							<span class="menu-item-parent">With Notification</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-list-alt"></i> 
+							<span class="menu-item-parent">Sample Menu 2</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-picture-o"></i> 
+							<span class="menu-item-parent">Sample Menu 3</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+  		</div>
+  		
+  		<div class="main-content">
+  			<div class="wrapper">
+  				<div class="row">
+  					<div class="col-sm-6">
+						<section class="panel">
+							<header class="panel-heading tab-bg-dark-grey ">
+								<ul class="nav nav-tabs">
+									<li class="">
+										<a data-toggle="tab" href="#home">Home</a>
+									</li>
+									<li class="">
+										<a data-toggle="tab" href="#about">About</a>
+									</li>
+									<li class="">
+										<a data-toggle="tab" href="#profile">Profile</a>
+									</li>
+									<li class="active">
+										<a data-toggle="tab" href="#contact">Contact</a>
+									</li>
+								</ul>
+							</header>
+							<div class="panel-body tab-body">
+								<div class="tab-content">
+									<div id="home" class="tab-pane">
+										Home
+									</div>
+									<div id="about" class="tab-pane">
+										<h4> About </h4>
+										<p>
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+										</p>
+									</div>
+									<div id="profile" class="tab-pane">Profile</div>
+									<div id="contact" class="tab-pane active">Contact</div>
+								</div>
+							</div>
+						</section>
+  					</div>
+  					<div class="col-sm-4">
+  						<div class=" state-overview">
+                              <section class="panel">
+                                  <div class="symbol red">
+                                      <i class="fa fa-tags"></i>
+                                  </div>
+                                  <div class="value">
+                                      <h1>140</h1>
+                                      <p>Sales</p>
+                                  </div>
+                              </section>
+                        </div>
+  					</div>
+  				</div>
+  				
+  				<div class="row">
+  					<div class="col-lg-12">
+                          <section class="panel">
+                              <div class="panel-body">
+                                  <ul class="summary-list">
+                                      <li>
+                                          <a href="javascript:;">
+                                              <i class="fa fa-shopping-cart"></i>
+                                              1 Purchase
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="javascript:;">
+                                              <i class="fa fa-envelope"></i>
+                                              15 Emails
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="javascript:;">
+                                              <i class="fa fa-share"></i>
+                                              2 Shares
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="javascript:;">
+                                              <i class="fa fa-tags"></i>
+                                              19 Sales
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="javascript:;">
+                                              <i class="fa fa-microphone"></i>
+                                              4 Audio
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </section>
+                      </div>
+  				</div>
+  			</div>
+  		</div>
+
+
+	    <script src="js/jquery-1.8.3.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+	    <script src="js/vendor/notification/SmartNotification.min.js"></script>
+	    <script src="js/template.js"></script>
+  	</body>
+</html>

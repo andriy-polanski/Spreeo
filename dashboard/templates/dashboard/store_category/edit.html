@@ -1,0 +1,53 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load staticfiles %}
+
+{% block extrastyles %}
+<style type="text/css">
+ul.errorlist {
+   list-style: none;  
+}
+</style>    
+{% endblock %}
+
+{% block head_title %}
+{% if form.instance.id %}
+    Edit Store Category: {{ form.instance.name }}
+{% else %}
+    Add Store Category
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if form.instance.id %}
+        <h3>Edit Store Category: {{ form.instance.name }}</h3>
+    {% else %}
+        <h3>Add Store Category</h3>
+    {% endif %}
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="pull-right">
+                    <a href="{% url 'dashboard:store_categories' %}" class="btn btn-default">Go back</a>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    {% if form.instance.pk %}
+                    <a href="{% url 'dashboard:delete_store_category' form.instance.pk%}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+            
+                <div class="clearfix"></div>
+
+                {% include 'dashboard/partials/messages.html' %}
+            
+                <section class="panel">
+                    <div class="panel-body">
+                        {% include "dashboard/field.html" with field=form.name control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=form.path control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=form.parent control_width="col-lg-4" %}
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+{% endblock %}

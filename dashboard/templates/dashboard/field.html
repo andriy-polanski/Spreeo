@@ -1,0 +1,12 @@
+{% load dashboard_tags %}
+<div class="form-group {% if field.errors %} has-error {% endif %}" id="div_{{field.auto_id}}">
+    <label for="name" class="col-lg-2 control-label">{{ field.label}}{% if field.field.required %}*{% endif %}</label>
+    <div class="{{control_width|default:'col-lg-10'}}">
+        {{ field|addcss:"form-control"}}
+        {% if field.errors %}
+            <span class="help-block">
+            {{ field.errors }} 
+            </span>
+        {% endif %}
+    </div>
+</div>

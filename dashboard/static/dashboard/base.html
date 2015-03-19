@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="Bazaar">
+	    <meta name="keyword" content="Bazaar">
+	    <title>Bazaar</title>
+	
+	    <!-- Essential CSS -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/bootstrap-reset.min.css" rel="stylesheet">
+	    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	    <!-- End Essential -->
+	 
+	    <!-- Template Layout CSS -->
+	    <link href="css/style.min.css" rel="stylesheet">
+	    <link href="css/common.min.css" rel="stylesheet">
+	    <!-- End Template Layout -->
+  	</head>
+  	<body>
+  		<div class="header blue-bg">
+  			<a href="" class="logo">
+  				<img src="img/logo-bazaar.png">
+  			</a>
+  				
+			<ul class="nav top-menu hidden-xs hidden-sm pull-left notify-row">
+				<li class="dropdown icon">
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+						<i class="fa fa-tasks"></i>
+						<span class="badge bg-important">6</span>
+					</a>
+					<ul class="dropdown-menu extended notification">
+						<div class="notify-arrow notify-arrow-success"></div>
+						<li>
+					    	<p class="success">You have 7 Pending Task</p>
+						</li>
+						<li>
+						    <a href="#">
+						        <span class="label label-info">
+						        <i class="fa fa-thumbs-up"></i></span>
+						        	XX just liked your item
+						        <span class="small italic">34 mins</span>
+						    </a>
+						</li>
+						<li>
+						    <a href="#">See all pending Task</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown icon">
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+						<i class="fa fa-bell"></i>
+						<span class="badge bg-important">6</span>
+					</a>
+					<ul class="dropdown-menu extended notification">
+						<div class="notify-arrow notify-arrow-info"></div>
+						<li>
+					    	<p class="info">You have 7 new notifications</p>
+						</li>
+						<li>
+						    <a href="#">
+						        <span class="label label-info">
+						        <i class="fa fa-thumbs-up"></i></span>
+						        	XX just liked your item
+						        <span class="small italic">34 mins</span>
+						    </a>
+						</li>
+						<li>
+						    <a href="#">
+						        <span class="label label-warning">
+						        <i class="fa fa-user"></i></span>
+						        	XX just following you
+						        <span class="small italic">1 Hours</span>
+						    </a>
+						</li>
+						<li>
+						    <a href="#">
+						        <span class="label label-warning">
+						        <i class="fa fa-tags"></i></span>
+						        	XX bookmarked you!
+						        <span class="small italic">1 Hours</span>
+						    </a>
+						</li>
+						<li>
+						    <a href="#">See all notifications</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+  			
+  			<ul class="nav pull-right top-menu">
+	            <li>
+	                <input type="text" class="form-control search" placeholder="Search">
+	            </li>
+	            <li class="icon">
+	                <span> 
+	                	<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" class="btn-collapse-menu">
+	                	<i class="fa fa-reorder"></i></a> 
+	                </span>
+	            </li>
+	            <li class="icon">
+	                <span> 
+	                	<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" class="smartMsgBox">
+	                	<i class="fa fa-sign-out"></i></a> 
+	                </span>
+	            </li>
+	        </ul>
+  		</div>
+  		
+  		<div class="sidebar hidden-xs hidden-sm">
+  			<div class="loginInfo">
+  				<span class="dropdown">
+  					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+  						<img src="img/default-avatar.jpeg" alt="me" class="online" /> 
+  						<span> Jon Due </span>
+  						<i class="fa fa-angle-down"></i>
+  					</a>
+  					<ul class="dropdown-menu extended logout">
+  					    <div class="log-arrow-up"></div>
+  					    <li><a href="#"><i class="fa fa-suitcase"></i>Profile</a></li>
+  					    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+  					    <li><a href="login.html">Log Out</a></li>
+  					</ul>
+  				</span>
+  			</div>
+  			
+  			<nav>
+				<ul>
+					<li>
+						<a href="index.html" title="Dashboard">
+							<i class="fa fa-lg fa-fw fa-home"></i>
+							<span class="menu-item-parent">Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-inbox"></i> 
+							<span class="menu-item-parent">Sample Menu 1</span>
+							<span class="badge pull-right inbox-badge">14</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-bar-chart-o"></i> 
+							<span class="menu-item-parent">With Child</span>
+							<b class="collapse-sign">
+								<em class="fa fa-plus-square-o"></em>
+							</b>
+						</a>
+						
+						<ul>
+							<li>
+								<a href="#">Child 1</a>
+							</li>
+							<li>
+								<a href="#">Child 2</a>
+							</li>
+							<li>
+								<a href="#">Child 3</a>
+							</li>
+							<li>
+								<a href="#">Child Badge 
+									<span class="badge pull-right inbox-badge bg-color-yellow">new</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-table"></i> 
+							<span class="menu-item-parent">With Child 2</span>
+						</a>
+						<ul>
+							<li>
+								<a href="table.html">Child 1</a>
+							</li>
+							<li>
+								<a href="datatables.html">Child 2
+									<span class="badge inbox-badge bg-color-greenLight">v1.10</span>
+								</a>
+							</li>
+							<li>
+								<a href="jqgrid.html">Child 3</a>
+							</li>
+						</ul>
+					</li>
+				
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-calendar"><em>3</em></i> 
+							<span class="menu-item-parent">With Notification</span>
+						</a>
+						
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-list-alt"></i> 
+							<span class="menu-item-parent">Sample Menu 2</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-lg fa-fw fa-picture-o"></i> 
+							<span class="menu-item-parent">Sample Menu 3</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+  		</div>
+  		
+  		<div class="main-content">
+  			<div class="wrapper">
+  				<div class="row">
+  					<div class="col-sm-6">
+						<section class="panel">
+							<header class="panel-heading">
+								Default Buttons
+							</header>
+							<div class="panel-body">
+								<button type="button" class="btn btn-default">Default</button>
+								<button type="button" class="btn btn-primary">Primary</button>
+								<button type="button" class="btn btn-success">Success</button>
+								<button type="button" class="btn btn-info">Info</button>
+								<button type="button" class="btn btn-warning">Warning</button>
+								<button type="button" class="btn btn-danger">Danger</button>
+							</div>
+						</section>
+  					</div>
+  					<div class="col-sm-6">
+	                      <section class="panel">
+	                          <header class="panel-heading">
+	                              Drop Shadow Buttons
+	                          </header>
+	                          <div class="panel-body">
+	                              <button type="button" class="btn btn-shadow btn-default">Default</button>
+	                              <button type="button" class="btn btn-shadow btn-primary">Primary</button>
+	                              <button type="button" class="btn btn-shadow btn-success">Success</button>
+	                              <button type="button" class="btn btn-shadow btn-info">Info</button>
+	                              <button type="button" class="btn btn-shadow btn-warning">Warning</button>
+	                              <button type="button" class="btn btn-shadow btn-danger">Danger</button>
+	                          </div>
+	                      </section>
+	                  </div>
+  				</div>
+  				<div class="row">
+  					<div class="col-sm-6">
+						<section class="panel">
+							<header class="panel-heading">
+							  Sample Forms
+							</header>
+							<div class="panel-body">
+							  <form class="form-horizontal" role="form">
+							      <div class="form-group">
+							          <label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+							          <div class="col-lg-10">
+							              <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+							              <p class="help-block">Example block-level help text here.</p>
+							          </div>
+							      </div>
+							      <div class="form-group">
+							          <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
+							          <div class="col-lg-10">
+							              <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+							          </div>
+							      </div>
+							      <div class="form-group">
+							          <div class="col-lg-offset-2 col-lg-10">
+							              <div class="checkbox">
+							                  <label>
+							                      <input type="checkbox"> Remember me
+							                  </label>
+							              </div>
+							          </div>
+							      </div>
+							      <div class="form-group">
+							          <div class="col-lg-offset-2 col-lg-10">
+							              <button type="submit" class="btn">Sign in</button>
+							          </div>
+							      </div>
+							  </form>
+							</div>
+						</section>
+						<section class="panel">
+							<header class="panel-heading">
+							  Sample Forms In Modal Dialog
+							</header>
+							<div class="panel-body">
+								<a href="#myModal" data-toggle="modal" class="btn btn-xs btn-default">
+							    	Form in Modal Default
+							  	</a>
+						  		<a href="#myModal-1" data-toggle="modal" class="btn btn-xs btn-warning">
+						      		Form in Modal Warning
+						  		</a>
+						  		<a href="#myModal-2" data-toggle="modal" class="btn btn-xs btn-info">
+						      		Form in Modal Info
+						  		</a>
+						
+								<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+								      <div class="modal-dialog">
+								          <div class="modal-content">
+								              <div class="modal-header">
+								                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								                  <h4 class="modal-title">Form Tittle</h4>
+								              </div>
+								              <div class="modal-body">
+								
+								                  <form role="form">
+								                      <div class="form-group">
+								                          <label for="exampleInputEmail1">Email address</label>
+								                          <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Enter email">
+								                      </div>
+								                      <div class="form-group">
+								                          <label for="exampleInputPassword1">Password</label>
+								                          <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+								                      </div>
+								                      <div class="form-group">
+								                          <label for="exampleInputFile">File input</label>
+								                          <input type="file" id="exampleInputFile3">
+								                          <p class="help-block">Example block-level help text here.</p>
+								                      </div>
+								                      <div class="checkbox">
+								                          <label>
+								                              <input type="checkbox"> Check me out
+								                          </label>
+								                      </div>
+								                      <button type="submit" class="btn btn-default">Submit</button>
+								                  </form>
+								              </div>
+								          </div>
+								      </div>
+								  </div>
+								  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-1" class="modal modal-warning fade">
+								      <div class="modal-dialog">
+								          <div class="modal-content">
+								              <div class="modal-header">
+								                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								                  <h4 class="modal-title">Form Tittle</h4>
+								              </div>
+								              <div class="modal-body">
+								
+								                  <form class="form-horizontal" role="form">
+								                      <div class="form-group">
+								                          <label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+								                          <div class="col-lg-10">
+								                              <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+								                          </div>
+								                      </div>
+								                      <div class="form-group">
+								                          <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
+								                          <div class="col-lg-10">
+								                              <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+								                          </div>
+								                      </div>
+								                      <div class="form-group">
+								                          <div class="col-lg-offset-2 col-lg-10">
+								                              <div class="checkbox">
+								                                  <label>
+								                                      <input type="checkbox"> Remember me
+								                                  </label>
+								                              </div>
+								                          </div>
+								                      </div>
+								                      <div class="form-group">
+								                          <div class="col-lg-offset-2 col-lg-10">
+								                              <button type="submit" class="btn btn-default">Sign in</button>
+								                          </div>
+								                      </div>
+								                  </form>
+								
+								              </div>
+								
+								          </div>
+								      </div>
+								  </div>
+								  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-2" class="modal modal-info fade">
+								      <div class="modal-dialog">
+								          <div class="modal-content">
+								              <div class="modal-header">
+								                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								                  <h4 class="modal-title">Form Tittle</h4>
+								              </div>
+								              <div class="modal-body">
+								                  <form class="form-inline" role="form">
+								                      <div class="form-group">
+								                          <label class="sr-only" for="exampleInputEmail2">Email address</label>
+								                          <input type="email" class="form-control sm-input" id="exampleInputEmail5" placeholder="Enter email">
+								                      </div>
+								                      <div class="form-group">
+								                          <label class="sr-only" for="exampleInputPassword2">Password</label>
+								                          <input type="password" class="form-control sm-input" id="exampleInputPassword5" placeholder="Password">
+								                      </div>
+								                      <div class="checkbox">
+								                          <label>
+								                              <input type="checkbox"> Remember me
+								                          </label>
+								                      </div>
+								                      <button type="submit" class="btn btn-default">Sign in</button>
+								                  </form>
+								
+								              </div>
+								
+								          </div>
+								      </div>
+								 </div>
+							</div>
+						</section>
+                  </div>
+                  
+					<div class="col-sm-6">
+						<header class="panel-heading">
+							Notification Message
+						</header>
+						<div class="panel-body">
+							<div class="alert alert-success alert-block fade in">
+							    <button data-dismiss="alert" class="close close-sm" type="button">
+							        <i class="icon-remove"></i>
+							    </button>
+							    <h4>
+							        <i class="fa fa-check-circle"></i>
+							        Success!
+							    </h4>
+							    <p>You successfully read this important alert message</p>
+							</div>
+							<div class="alert alert-block alert-danger fade in">
+							    <button data-dismiss="alert" class="close close-sm" type="button">
+							        <i class="icon-remove"></i>
+							    </button>
+							    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+							</div>
+							<div class="alert alert-success fade in">
+							    <button data-dismiss="alert" class="close close-sm" type="button">
+							        <i class="icon-remove"></i>
+							    </button>
+							    <strong>Well done!</strong> You successfully read this important alert message.
+							</div>
+							<div class="alert alert-info fade in">
+							    <button data-dismiss="alert" class="close close-sm" type="button">
+							        <i class="icon-remove"></i>
+							    </button>
+							    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+							</div>
+							<div class="alert alert-warning fade in">
+							    <button data-dismiss="alert" class="close close-sm" type="button">
+							        <i class="fa fa-remove"></i>
+							    </button>
+							    <strong>Warning!</strong> Best check yo self, you're not looking too good.
+							</div>
+						</div>
+					</div>
+  				</div>
+  			</div>
+  		</div>
+
+
+	    <script src="js/jquery-1.8.3.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+	    <script src="js/vendor/notification/SmartNotification.min.js"></script>
+	    <script src="js/template.js"></script>
+	    
+  	</body>
+</html>

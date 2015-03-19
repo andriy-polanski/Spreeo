@@ -1,0 +1,29 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load staticfiles %}
+
+{% block head_title %} Store Categories {% endblock %}
+
+{% block content %}
+    <h3>Store Categories</h3>
+    {% include 'dashboard/partials/messages.html' %}
+    <table class="table table-striped">
+        <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Path</th>
+            <th>Parent</th>
+            <th></th> 
+        </thead>
+    {% for c in categories %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.path }}</td>
+            <td>{{ c.parent }}</td> 
+            <td><a href="{% url 'dashboard:edit_store_category' pk=c.id %}">Edit</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'dashboard:new_store_category' %}" class="btn btn-success">New Store Category</a>
+{% endblock %}

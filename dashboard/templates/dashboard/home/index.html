@@ -1,0 +1,64 @@
+{% extends "dashboard/layout.html" %}
+
+{% block extrahead %}
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block head_title %}Welcome to Bazaar{% endblock %}
+
+{% block content %}
+    <h3 style="font-family: 'Lora', serif; font-weight: bold; font-style:italic; font-size: 40px">Welcome to Bazaar!</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading"><h3>Pending Tasks</h3></header>
+                <div class="panel-body">
+                    <div class="row-fluid">
+                        <div class="col-sm-6">
+                            <table class="table">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Status</th> 
+                                    <th></th>
+                                </thead>
+                                {% for task in tasks %}
+                                <tr class="{% if not forloop.counter|divisibleby:2 %}info{% endif %}">
+                                    <td>{{forloop.counter}}.</td>
+                                    <td>
+                                        {% if task.done %}
+                                            <strike>
+                                        {% endif %}
+                                        {% if task.url %}
+                                        <a href="{{task.url}}">
+                                        {% endif %}
+                                            {{ task.title }}
+                                        {% if task.url %}
+                                        </a>
+                                        {% endif %}
+                                        {% if task.done %}
+                                            </strike>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if task.done %}
+                                            Thanks!&nbsp;
+                                            <i class="fa fa-thumbs-up"></i>
+                                        {% else %}
+                                            {% if task.url %}
+                                                <a href="{{ task.url }}">Do this now</a>
+                                            {% else %}
+                                                Coming Soon!    
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+    </div>
+    
+{% endblock %}

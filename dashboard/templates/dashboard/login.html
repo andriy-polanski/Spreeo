@@ -1,0 +1,79 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% load dashboard_tags %}
+
+{% block extrastyles %}
+    <style type="text/css">
+        ul.errorlist {
+            list-style: none;
+        }
+    </style>
+{% endblock %}
+
+{% block layout %}
+    <div class="header blue-bg">
+
+        <!-- Header logo -->
+        <a href="{% url 'dashboard:index' %}" class="logo">
+            <img src="{% static 'dashboard/img/logo-bazaar.png' %}">
+        </a>
+
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container main-content remove-margin">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Login
+                        </header>
+                        <div class="panel-body">
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-block alert-danger fade in">
+                                {{ form.non_field_errors }}
+                            </div>
+                            {% endif  %}
+                        
+                            {% include "dashboard/partials/messages.html" %}
+                        
+                            <form class="form-horizontal" role="form" method="post">
+                                {% csrf_token %}
+                                <div class="form-group {% if form.username.errors %} has-error {% endif %}">
+                                    <label for="id_username" class="col-lg-2 control-label ">Username:</label>
+                                    <div class="col-lg-10">
+                                        {{ form.username }}
+                                        {% if form.username.errors %}
+                                            <span class="help-block">
+                                            {{ form.username.errors }}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+                                    <label for="id_password" class="col-lg-2 control-label">Password:</label>
+                                    <div class="col-lg-10">
+                                        {{ form.password }}
+                                        {% if form.password.errors %}
+                                            <span class="help-block">
+                                            {{ form.password.errors }}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" class="btn">Sign in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

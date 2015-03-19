@@ -1,0 +1,55 @@
+{%  load staticfiles %}
+{%  load dashboard_tags %}
+<div class="sidebar hidden-xs hidden-sm">
+
+    <!-- Sidebar User info -->
+    <div class="loginInfo">
+        <span>
+            <a class="toggle-menu-show" href="#">
+                <img src="{% static 'dashboard/img/default-avatar.jpeg'%}" alt="me" class="online" />
+                <span> {{ user.first_name }} {{ user.last_name }} </span>
+                <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="toggle-menu logout">
+                <!--
+                <li><a href="#"><i class="fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                -->
+                <li><a href="javascript:void(0);" data-action="toggleMenu" title="Logout" class="smartMsgBox">Log Out</a></li>
+            </ul>
+        </span>
+    </div>
+
+    {% dashboard_navigation %}
+    <!-- Nav Items -->
+    {% if nav_items|length > 0 %}
+    <nav>
+        <ul>
+            {% for nav_item in nav_items %}
+                <li class="{% if request.get_full_path == nav_item.url %}active{% endif %}">
+                    <a href="{{ nav_item.url }}" title="{{ nav_item.label }}">
+                        <i class="fa fa-lg fa-fw {{ nav_item.icon }}"></i>
+                        <span class="menu-item-parent">{{ nav_item.label }}</span>
+                        {% if nav_item.badge_text %}
+                            <span class="badge pull-right inbox-badge">{{ nav_item.badge_text }}</span>
+                        {% endif %}
+                        {% if nav_item.has_children %}
+                            <b class="collapse-sign">
+                                <em class="fa fa-plus-square-o"></em>
+                            </b>
+                        {% endif %}
+                    </a>
+                    {% if nav_item.has_children %}
+                        <ul>
+                        {% for sub_item in nav_item.children %}
+                            <li><a href="{{ sub_item.url }}">{{ sub_item.label }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+        </ul>
+    </nav>
+    {% endif %}
+</div>

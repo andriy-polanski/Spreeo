@@ -1,0 +1,1958 @@
+-- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: reflexdashboard
+-- ------------------------------------------------------
+-- Server version	5.5.38-0ubuntu0.12.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`permission_id`),
+  KEY `auth_group_permissions_5f412f9a` (`group_id`),
+  KEY `auth_group_permissions_83d7f98b` (`permission_id`),
+  CONSTRAINT `group_id_refs_id_f4b32aac` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `permission_id_refs_id_6ba0f519` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
+  KEY `auth_permission_37ef4eb4` (`content_type_id`),
+  CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add group',3,'add_group'),(8,'Can change group',3,'change_group'),(9,'Can delete group',3,'delete_group'),(10,'Can add user',4,'add_user'),(11,'Can change user',4,'change_user'),(12,'Can delete user',4,'delete_user'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session'),(19,'Can add flat page',7,'add_flatpage'),(20,'Can change flat page',7,'change_flatpage'),(21,'Can delete flat page',7,'delete_flatpage'),(22,'Can add site',8,'add_site'),(23,'Can change site',8,'change_site'),(24,'Can delete site',8,'delete_site'),(25,'Can add migration history',9,'add_migrationhistory'),(26,'Can change migration history',9,'change_migrationhistory'),(27,'Can delete migration history',9,'delete_migrationhistory'),(28,'Can add product',10,'add_product'),(29,'Can change product',10,'change_product'),(30,'Can delete product',10,'delete_product'),(31,'Can add product image',11,'add_productimage'),(32,'Can change product image',11,'change_productimage'),(33,'Can delete product image',11,'delete_productimage'),(34,'Can add product category',12,'add_productcategory'),(35,'Can change product category',12,'change_productcategory'),(36,'Can delete product category',12,'delete_productcategory'),(37,'Can add product category heading',13,'add_productcategoryheading'),(38,'Can change product category heading',13,'change_productcategoryheading'),(39,'Can delete product category heading',13,'delete_productcategoryheading'),(40,'Can add specification',14,'add_specification'),(41,'Can change specification',14,'change_specification'),(42,'Can delete specification',14,'delete_specification'),(43,'Can add merchant promotion',15,'add_merchantpromotion'),(44,'Can change merchant promotion',15,'change_merchantpromotion'),(45,'Can delete merchant promotion',15,'delete_merchantpromotion'),(46,'Can add merchant promotion item',16,'add_merchantpromotionitem'),(47,'Can change merchant promotion item',16,'change_merchantpromotionitem'),(48,'Can delete merchant promotion item',16,'delete_merchantpromotionitem'),(49,'Can add merchant',17,'add_merchant'),(50,'Can change merchant',17,'change_merchant'),(51,'Can delete merchant',17,'delete_merchant'),(52,'Can add merchant note',18,'add_merchantnote'),(53,'Can change merchant note',18,'change_merchantnote'),(54,'Can delete merchant note',18,'delete_merchantnote'),(55,'Can add merchant image',19,'add_merchantimage'),(56,'Can change merchant image',19,'change_merchantimage'),(57,'Can delete merchant image',19,'delete_merchantimage'),(58,'Can add merchant user',20,'add_merchantuser'),(59,'Can change merchant user',20,'change_merchantuser'),(60,'Can delete merchant user',20,'delete_merchantuser'),(61,'Can add location',21,'add_location'),(62,'Can change location',21,'change_location'),(63,'Can delete location',21,'delete_location'),(64,'Can add product status',22,'add_productstatus'),(65,'Can change product status',22,'change_productstatus'),(66,'Can delete product status',22,'delete_productstatus'),(67,'Can add product status value',23,'add_productstatusvalue'),(68,'Can change product status value',23,'change_productstatusvalue'),(69,'Can delete product status value',23,'delete_productstatusvalue'),(70,'Can add top level category',24,'add_toplevelcategory'),(71,'Can change top level category',24,'change_toplevelcategory'),(72,'Can delete top level category',24,'delete_toplevelcategory'),(73,'Can add campaign',25,'add_campaign'),(74,'Can change campaign',25,'change_campaign'),(75,'Can delete campaign',25,'delete_campaign'),(76,'Can add campaign product',26,'add_campaignproduct'),(77,'Can change campaign product',26,'change_campaignproduct'),(78,'Can delete campaign product',26,'delete_campaignproduct'),(79,'Can add broadcast request',27,'add_broadcastrequest'),(80,'Can change broadcast request',27,'change_broadcastrequest'),(81,'Can delete broadcast request',27,'delete_broadcastrequest'),(82,'Can add targeted user',28,'add_targeteduser'),(83,'Can change targeted user',28,'change_targeteduser'),(84,'Can delete targeted user',28,'delete_targeteduser'),(85,'Can add feed item',29,'add_feeditem'),(86,'Can change feed item',29,'change_feeditem'),(87,'Can delete feed item',29,'delete_feeditem'),(88,'Can add shared',30,'add_shared'),(89,'Can change shared',30,'change_shared'),(90,'Can delete shared',30,'delete_shared'),(91,'Can add follower',31,'add_follower'),(92,'Can change follower',31,'change_follower'),(93,'Can delete follower',31,'delete_follower'),(94,'Can add favorite',32,'add_favorite'),(95,'Can change favorite',32,'change_favorite'),(96,'Can delete favorite',32,'delete_favorite'),(97,'Can add user view',33,'add_userview'),(98,'Can change user view',33,'change_userview'),(99,'Can delete user view',33,'delete_userview'),(100,'Can add editorial',34,'add_editorial'),(101,'Can change editorial',34,'change_editorial'),(102,'Can delete editorial',34,'delete_editorial'),(103,'Can add friend',35,'add_friend'),(104,'Can change friend',35,'change_friend'),(105,'Can delete friend',35,'delete_friend'),(106,'Can add user profile',36,'add_userprofile'),(107,'Can change user profile',36,'change_userprofile'),(108,'Can delete user profile',36,'delete_userprofile'),(109,'Can add comment',37,'add_comment'),(110,'Can change comment',37,'change_comment'),(111,'Can delete comment',37,'delete_comment'),(112,'Can add merchant specification',38,'add_merchantspecification'),(113,'Can change merchant specification',38,'change_merchantspecification'),(114,'Can delete merchant specification',38,'delete_merchantspecification'),(115,'Can add photo',39,'add_photo'),(116,'Can change photo',39,'change_photo'),(117,'Can delete photo',39,'delete_photo'),(118,'Can add website template',40,'add_websitetemplate'),(119,'Can change website template',40,'change_websitetemplate'),(120,'Can delete website template',40,'delete_websitetemplate'),(121,'Can add stock image',41,'add_stockimage'),(122,'Can change stock image',41,'change_stockimage'),(123,'Can delete stock image',41,'delete_stockimage'),(124,'Can add template image',42,'add_templateimage'),(125,'Can change template image',42,'change_templateimage'),(126,'Can delete template image',42,'delete_templateimage'),(127,'Can add alternate identifier',43,'add_alternateidentifier'),(128,'Can change alternate identifier',43,'change_alternateidentifier'),(129,'Can delete alternate identifier',43,'delete_alternateidentifier'),(130,'Can add merchant contact',44,'add_merchantcontact'),(131,'Can change merchant contact',44,'change_merchantcontact'),(132,'Can delete merchant contact',44,'delete_merchantcontact'),(133,'Can add merchant mol gateway',45,'add_merchantmolgateway'),(134,'Can change merchant mol gateway',45,'change_merchantmolgateway'),(135,'Can delete merchant mol gateway',45,'delete_merchantmolgateway'),(136,'Can add merchant shipping option',46,'add_merchantshippingoption'),(137,'Can change merchant shipping option',46,'change_merchantshippingoption'),(138,'Can delete merchant shipping option',46,'delete_merchantshippingoption'),(139,'Can add variant type',47,'add_varianttype'),(140,'Can change variant type',47,'change_varianttype'),(141,'Can delete variant type',47,'delete_varianttype'),(142,'Can add product variant type',48,'add_productvarianttype'),(143,'Can change product variant type',48,'change_productvarianttype'),(144,'Can delete product variant type',48,'delete_productvarianttype'),(145,'Can add variant value',49,'add_variantvalue'),(146,'Can change variant value',49,'change_variantvalue'),(147,'Can delete variant value',49,'delete_variantvalue'),(148,'Can add product sku',50,'add_productsku'),(149,'Can change product sku',50,'change_productsku'),(150,'Can delete product sku',50,'delete_productsku'),(151,'Can add product sku attr',51,'add_productskuattr'),(152,'Can change product sku attr',51,'change_productskuattr'),(153,'Can delete product sku attr',51,'delete_productskuattr'),(154,'Can add sku price',52,'add_skuprice'),(155,'Can change sku price',52,'change_skuprice'),(156,'Can delete sku price',52,'delete_skuprice'),(157,'Can add merchant coupon',53,'add_merchantcoupon'),(158,'Can change merchant coupon',53,'change_merchantcoupon'),(159,'Can delete merchant coupon',53,'delete_merchantcoupon'),(160,'Can add cart',54,'add_cart'),(161,'Can change cart',54,'change_cart'),(162,'Can delete cart',54,'delete_cart'),(163,'Can add cart item',55,'add_cartitem'),(164,'Can change cart item',55,'change_cartitem'),(165,'Can delete cart item',55,'delete_cartitem'),(166,'Can add cart coupon',56,'add_cartcoupon'),(167,'Can change cart coupon',56,'change_cartcoupon'),(168,'Can delete cart coupon',56,'delete_cartcoupon'),(169,'Can add store level category',57,'add_storelevelcategory'),(170,'Can change store level category',57,'change_storelevelcategory'),(171,'Can delete store level category',57,'delete_storelevelcategory'),(172,'Can add merchant generic page',58,'add_merchantgenericpage'),(173,'Can change merchant generic page',58,'change_merchantgenericpage'),(174,'Can delete merchant generic page',58,'delete_merchantgenericpage');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$JnTLnkzqmDHH$Ng2wMY30g64lvG20yTR7/Z2RHyq84Ml/qfy9VEiL/OY=','2014-09-18 02:20:12',1,'admin','','','admin@spreeo.com',1,1,'2014-09-15 04:00:09');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`group_id`),
+  KEY `auth_user_groups_6340c63c` (`user_id`),
+  KEY `auth_user_groups_5f412f9a` (`group_id`),
+  CONSTRAINT `group_id_refs_id_274b862c` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `user_id_refs_id_40c41112` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permissions_6340c63c` (`user_id`),
+  KEY `auth_user_user_permissions_83d7f98b` (`permission_id`),
+  CONSTRAINT `permission_id_refs_id_35d9ac25` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `user_id_refs_id_4dc23c39` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_6340c63c` (`user_id`),
+  KEY `django_admin_log_37ef4eb4` (`content_type_id`),
+  CONSTRAINT `content_type_id_refs_id_93d2d1f8` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `user_id_refs_id_c0d12874` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2014-09-18 02:13:47',1,24,'1','Lifestyle',1,''),(2,'2014-09-18 02:13:50',1,24,'2','Food',1,''),(3,'2014-09-18 02:13:55',1,24,'3','Health and Fitness',1,''),(4,'2014-09-18 02:14:05',1,24,'4','Clothing',1,''),(5,'2014-09-18 02:20:45',1,17,'1','Bikaya',1,''),(6,'2014-09-18 02:20:58',1,20,'1','MerchantUser object',1,''),(7,'2014-09-18 02:21:44',1,57,'1','StoreLevelCategory object',1,''),(8,'2014-09-18 02:21:57',1,57,'2','StoreLevelCategory object',1,''),(9,'2014-09-18 02:22:29',1,57,'3','StoreLevelCategory object',1,''),(10,'2014-09-18 02:24:06',1,10,'1','[Bikaya] EMMA - dull peach 2',1,''),(11,'2014-09-18 02:24:27',1,10,'2','[Bikaya] EMMA - burgundy',1,''),(12,'2014-09-18 02:24:57',1,10,'3','[Bikaya] EMMA - light turqoise',1,''),(13,'2014-09-18 02:25:02',1,10,'4','[Bikaya] EMMA - light turqoise',1,''),(14,'2014-09-18 02:25:40',1,10,'4','[Bikaya] EMMA - light turqoise',3,''),(15,'2014-09-18 02:28:25',1,10,'5','[Bikaya] Bi FIFI - pearl white',1,''),(16,'2014-09-18 02:28:40',1,10,'6','[Bikaya] Bi FIFI - purple',1,''),(17,'2014-09-18 02:30:44',1,10,'1','[Bikaya] EMMA - dull peach 2',2,'Added product image \"ProductImage object\".'),(18,'2014-09-18 02:30:55',1,10,'2','[Bikaya] EMMA - burgundy',2,'Added product image \"ProductImage object\".'),(19,'2014-09-18 02:31:14',1,10,'3','[Bikaya] EMMA - light turqoise',2,'Added product image \"ProductImage object\".'),(20,'2014-09-18 02:31:31',1,10,'5','[Bikaya] Bi FIFI - pearl white',2,'Added product image \"ProductImage object\".'),(21,'2014-09-18 02:31:41',1,10,'6','[Bikaya] Bi FIFI - purple',2,'Added product image \"ProductImage object\".');
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `app_label` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'log entry','admin','logentry'),(2,'permission','auth','permission'),(3,'group','auth','group'),(4,'user','auth','user'),(5,'content type','contenttypes','contenttype'),(6,'session','sessions','session'),(7,'flat page','flatpages','flatpage'),(8,'site','sites','site'),(9,'migration history','south','migrationhistory'),(10,'product','reflex','product'),(11,'product image','reflex','productimage'),(12,'product category','reflex','productcategory'),(13,'product category heading','reflex','productcategoryheading'),(14,'specification','reflex','specification'),(15,'merchant promotion','reflex','merchantpromotion'),(16,'merchant promotion item','reflex','merchantpromotionitem'),(17,'merchant','reflex','merchant'),(18,'merchant note','reflex','merchantnote'),(19,'merchant image','reflex','merchantimage'),(20,'merchant user','reflex','merchantuser'),(21,'location','reflex','location'),(22,'product status','reflex','productstatus'),(23,'product status value','reflex','productstatusvalue'),(24,'top level category','reflex','toplevelcategory'),(25,'campaign','reflex','campaign'),(26,'campaign product','reflex','campaignproduct'),(27,'broadcast request','reflex','broadcastrequest'),(28,'targeted user','reflex','targeteduser'),(29,'feed item','reflex','feeditem'),(30,'shared','reflex','shared'),(31,'follower','reflex','follower'),(32,'favorite','reflex','favorite'),(33,'user view','reflex','userview'),(34,'editorial','reflex','editorial'),(35,'friend','reflex','friend'),(36,'user profile','reflex','userprofile'),(37,'comment','reflex','comment'),(38,'merchant specification','reflex','merchantspecification'),(39,'photo','reflex','photo'),(40,'website template','reflex','websitetemplate'),(41,'stock image','reflex','stockimage'),(42,'template image','reflex','templateimage'),(43,'alternate identifier','reflex','alternateidentifier'),(44,'merchant contact','reflex','merchantcontact'),(45,'merchant mol gateway','reflex','merchantmolgateway'),(46,'merchant shipping option','reflex','merchantshippingoption'),(47,'variant type','reflex','varianttype'),(48,'product variant type','reflex','productvarianttype'),(49,'variant value','reflex','variantvalue'),(50,'product sku','reflex','productsku'),(51,'product sku attr','reflex','productskuattr'),(52,'sku price','reflex','skuprice'),(53,'merchant coupon','reflex','merchantcoupon'),(54,'cart','reflex','cart'),(55,'cart item','reflex','cartitem'),(56,'cart coupon','reflex','cartcoupon'),(57,'store level category','reflex','storelevelcategory'),(58,'merchant generic page','reflex','merchantgenericpage');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_flatpage`
+--
+
+DROP TABLE IF EXISTS `django_flatpage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_flatpage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(100) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `content` longtext NOT NULL,
+  `enable_comments` tinyint(1) NOT NULL,
+  `template_name` varchar(70) NOT NULL,
+  `registration_required` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_flatpage_c379dc61` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_flatpage`
+--
+
+LOCK TABLES `django_flatpage` WRITE;
+/*!40000 ALTER TABLE `django_flatpage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `django_flatpage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_flatpage_sites`
+--
+
+DROP TABLE IF EXISTS `django_flatpage_sites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_flatpage_sites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `flatpage_id` int(11) NOT NULL,
+  `site_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `flatpage_id` (`flatpage_id`,`site_id`),
+  KEY `django_flatpage_sites_872c4601` (`flatpage_id`),
+  KEY `django_flatpage_sites_99732b5c` (`site_id`),
+  CONSTRAINT `flatpage_id_refs_id_83cd0023` FOREIGN KEY (`flatpage_id`) REFERENCES `django_flatpage` (`id`),
+  CONSTRAINT `site_id_refs_id_2df951cb` FOREIGN KEY (`site_id`) REFERENCES `django_site` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_flatpage_sites`
+--
+
+LOCK TABLES `django_flatpage_sites` WRITE;
+/*!40000 ALTER TABLE `django_flatpage_sites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `django_flatpage_sites` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_b7b81f0c` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('ivzv1ax3of4hb3m4fezhwu06ayigdl61','OGQ0ZDAyZTE2OTYzMDExOWNlNzFlZTc1MjhlMTBhM2VkOTllZDIwNDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=','2014-10-02 02:20:12');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_site`
+--
+
+DROP TABLE IF EXISTS `django_site`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_site` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain` varchar(100) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_site`
+--
+
+LOCK TABLES `django_site` WRITE;
+/*!40000 ALTER TABLE `django_site` DISABLE KEYS */;
+INSERT INTO `django_site` VALUES (1,'example.com','example.com');
+/*!40000 ALTER TABLE `django_site` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_alternateidentifier`
+--
+
+DROP TABLE IF EXISTS `reflex_alternateidentifier`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_alternateidentifier` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `id_type` int(11) NOT NULL,
+  `value` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `value` (`value`),
+  KEY `reflex_alternateidentifier_4206e65a` (`merchant_id`),
+  KEY `reflex_alternateidentifier_2f2964dc` (`id_type`),
+  CONSTRAINT `merchant_id_refs_id_36d98622` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_alternateidentifier`
+--
+
+LOCK TABLES `reflex_alternateidentifier` WRITE;
+/*!40000 ALTER TABLE `reflex_alternateidentifier` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_alternateidentifier` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_broadcastrequest`
+--
+
+DROP TABLE IF EXISTS `reflex_broadcastrequest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_broadcastrequest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `campaign_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `status_reason` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_broadcastrequest_6cd0afe2` (`campaign_id`),
+  CONSTRAINT `campaign_id_refs_id_c811f29e` FOREIGN KEY (`campaign_id`) REFERENCES `reflex_campaign` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_broadcastrequest`
+--
+
+LOCK TABLES `reflex_broadcastrequest` WRITE;
+/*!40000 ALTER TABLE `reflex_broadcastrequest` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_broadcastrequest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_campaign`
+--
+
+DROP TABLE IF EXISTS `reflex_campaign`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_campaign` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(120) NOT NULL,
+  `description` longtext NOT NULL,
+  `merchant_id` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `broadcast_type` int(11) NOT NULL,
+  `promotional_image` varchar(100) DEFAULT NULL,
+  `listing_page_image` varchar(100) DEFAULT NULL,
+  `from_date` datetime DEFAULT NULL,
+  `till_date` datetime DEFAULT NULL,
+  `display_style` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `terms_and_conditions` longtext NOT NULL,
+  `active_request_id` int(11) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_campaign_4206e65a` (`merchant_id`),
+  KEY `reflex_campaign_6f33f001` (`category_id`),
+  KEY `reflex_campaign_afbb987d` (`location_id`),
+  KEY `reflex_campaign_ca0379a1` (`active_request_id`),
+  CONSTRAINT `active_request_id_refs_id_1c979c9a` FOREIGN KEY (`active_request_id`) REFERENCES `reflex_broadcastrequest` (`id`),
+  CONSTRAINT `category_id_refs_id_3314c0c7` FOREIGN KEY (`category_id`) REFERENCES `reflex_toplevelcategory` (`id`),
+  CONSTRAINT `location_id_refs_id_27057741` FOREIGN KEY (`location_id`) REFERENCES `reflex_location` (`id`),
+  CONSTRAINT `merchant_id_refs_id_601ef5ed` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_campaign`
+--
+
+LOCK TABLES `reflex_campaign` WRITE;
+/*!40000 ALTER TABLE `reflex_campaign` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_campaign` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_campaignproduct`
+--
+
+DROP TABLE IF EXISTS `reflex_campaignproduct`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_campaignproduct` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `campaign_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `order` int(11) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_campaignproduct_6cd0afe2` (`campaign_id`),
+  KEY `reflex_campaignproduct_7f1b40ad` (`product_id`),
+  CONSTRAINT `campaign_id_refs_id_57abb058` FOREIGN KEY (`campaign_id`) REFERENCES `reflex_campaign` (`id`),
+  CONSTRAINT `product_id_refs_id_566c15d6` FOREIGN KEY (`product_id`) REFERENCES `reflex_product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_campaignproduct`
+--
+
+LOCK TABLES `reflex_campaignproduct` WRITE;
+/*!40000 ALTER TABLE `reflex_campaignproduct` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_campaignproduct` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_cart`
+--
+
+DROP TABLE IF EXISTS `reflex_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `sessionid` varchar(64) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `special_instructions` longtext NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reflex_cart_merchant_id_57f860273eb45537_uniq` (`merchant_id`,`sessionid`),
+  KEY `reflex_cart_4206e65a` (`merchant_id`),
+  KEY `reflex_cart_6340c63c` (`user_id`),
+  CONSTRAINT `merchant_id_refs_id_50a03421` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `user_id_refs_id_6b7e14f8` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_cart`
+--
+
+LOCK TABLES `reflex_cart` WRITE;
+/*!40000 ALTER TABLE `reflex_cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_cartcoupon`
+--
+
+DROP TABLE IF EXISTS `reflex_cartcoupon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_cartcoupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cart_id` int(11) NOT NULL,
+  `coupon_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_cartcoupon_8a7b7230` (`cart_id`),
+  KEY `reflex_cartcoupon_606a82fc` (`coupon_id`),
+  CONSTRAINT `cart_id_refs_id_bb72b68f` FOREIGN KEY (`cart_id`) REFERENCES `reflex_cart` (`id`),
+  CONSTRAINT `coupon_id_refs_id_719343fe` FOREIGN KEY (`coupon_id`) REFERENCES `reflex_merchantcoupon` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_cartcoupon`
+--
+
+LOCK TABLES `reflex_cartcoupon` WRITE;
+/*!40000 ALTER TABLE `reflex_cartcoupon` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_cartcoupon` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_cartitem`
+--
+
+DROP TABLE IF EXISTS `reflex_cartitem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_cartitem` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cart_id` int(11) NOT NULL,
+  `sku_id` int(11) DEFAULT NULL,
+  `quantity` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reflex_cartitem_cart_id_29c6cbf4c4165263_uniq` (`cart_id`,`sku_id`),
+  KEY `reflex_cartitem_8a7b7230` (`cart_id`),
+  KEY `reflex_cartitem_b2b8005a` (`sku_id`),
+  CONSTRAINT `cart_id_refs_id_ba468544` FOREIGN KEY (`cart_id`) REFERENCES `reflex_cart` (`id`),
+  CONSTRAINT `sku_id_refs_id_91540706` FOREIGN KEY (`sku_id`) REFERENCES `reflex_productsku` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_cartitem`
+--
+
+LOCK TABLES `reflex_cartitem` WRITE;
+/*!40000 ALTER TABLE `reflex_cartitem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_cartitem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_comment`
+--
+
+DROP TABLE IF EXISTS `reflex_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_type_id` int(11) NOT NULL,
+  `object_id` int(10) unsigned NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `text` longtext NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_comment_37ef4eb4` (`content_type_id`),
+  KEY `reflex_comment_6340c63c` (`user_id`),
+  CONSTRAINT `content_type_id_refs_id_23650a75` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `user_id_refs_id_f746dc86` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_comment`
+--
+
+LOCK TABLES `reflex_comment` WRITE;
+/*!40000 ALTER TABLE `reflex_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_editorial`
+--
+
+DROP TABLE IF EXISTS `reflex_editorial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_editorial` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `page_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `teaser_text` longtext NOT NULL,
+  `teaser_image` varchar(100) DEFAULT NULL,
+  `published_date` datetime DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `page_id` (`page_id`),
+  KEY `reflex_editorial_e969df21` (`author_id`),
+  CONSTRAINT `author_id_refs_id_c761a2dd` FOREIGN KEY (`author_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `page_id_refs_id_1af4d370` FOREIGN KEY (`page_id`) REFERENCES `django_flatpage` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_editorial`
+--
+
+LOCK TABLES `reflex_editorial` WRITE;
+/*!40000 ALTER TABLE `reflex_editorial` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_editorial` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_favorite`
+--
+
+DROP TABLE IF EXISTS `reflex_favorite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_favorite` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `object_id` int(10) unsigned NOT NULL,
+  `preview_text` varchar(120) NOT NULL,
+  `preview_image` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_favorite_6340c63c` (`user_id`),
+  KEY `reflex_favorite_37ef4eb4` (`content_type_id`),
+  CONSTRAINT `content_type_id_refs_id_c24da689` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `user_id_refs_id_483d2659` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_favorite`
+--
+
+LOCK TABLES `reflex_favorite` WRITE;
+/*!40000 ALTER TABLE `reflex_favorite` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_favorite` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_feeditem`
+--
+
+DROP TABLE IF EXISTS `reflex_feeditem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_feeditem` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_type_id` int(11) NOT NULL,
+  `object_id` int(10) unsigned NOT NULL,
+  `from_date` datetime NOT NULL,
+  `till_date` datetime NOT NULL,
+  `for_user_id` int(11) DEFAULT NULL,
+  `self_post` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_feeditem_37ef4eb4` (`content_type_id`),
+  KEY `reflex_feeditem_dfcf80b9` (`for_user_id`),
+  CONSTRAINT `content_type_id_refs_id_6464eb07` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `for_user_id_refs_id_6179b24b` FOREIGN KEY (`for_user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_feeditem`
+--
+
+LOCK TABLES `reflex_feeditem` WRITE;
+/*!40000 ALTER TABLE `reflex_feeditem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_feeditem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_follower`
+--
+
+DROP TABLE IF EXISTS `reflex_follower`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_follower` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `merchant_id` int(11) NOT NULL,
+  `unfollowed` datetime DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_follower_6340c63c` (`user_id`),
+  KEY `reflex_follower_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_5a0bdf65` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `user_id_refs_id_b33e1645` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_follower`
+--
+
+LOCK TABLES `reflex_follower` WRITE;
+/*!40000 ALTER TABLE `reflex_follower` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_follower` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_friend`
+--
+
+DROP TABLE IF EXISTS `reflex_friend`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_friend` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `friend_id` int(11) NOT NULL,
+  `reciprocated` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_friend_6340c63c` (`user_id`),
+  KEY `reflex_friend_db2d0ac4` (`friend_id`),
+  CONSTRAINT `friend_id_refs_id_1387d2af` FOREIGN KEY (`friend_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `user_id_refs_id_1387d2af` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_friend`
+--
+
+LOCK TABLES `reflex_friend` WRITE;
+/*!40000 ALTER TABLE `reflex_friend` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_friend` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_location`
+--
+
+DROP TABLE IF EXISTS `reflex_location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_location` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `location_name` varchar(80) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `longitude` decimal(9,6) DEFAULT NULL,
+  `latitude` decimal(9,6) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_location_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_544cecc4` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_location`
+--
+
+LOCK TABLES `reflex_location` WRITE;
+/*!40000 ALTER TABLE `reflex_location` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchant`
+--
+
+DROP TABLE IF EXISTS `reflex_merchant`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchant` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(120) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `logo` varchar(100) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `created_by_id` int(11) DEFAULT NULL,
+  `on_demand_create` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchant_4da47e07` (`name`),
+  KEY `reflex_merchant_6f33f001` (`category_id`),
+  KEY `reflex_merchant_0c98d849` (`created_by_id`),
+  CONSTRAINT `category_id_refs_id_1bff1cb6` FOREIGN KEY (`category_id`) REFERENCES `reflex_toplevelcategory` (`id`),
+  CONSTRAINT `created_by_id_refs_id_d538ff02` FOREIGN KEY (`created_by_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchant`
+--
+
+LOCK TABLES `reflex_merchant` WRITE;
+/*!40000 ALTER TABLE `reflex_merchant` DISABLE KEYS */;
+INSERT INTO `reflex_merchant` VALUES (1,'Bikaya',4,'','2014-09-18 02:20:45','2014-09-18 02:20:45',NULL,0);
+/*!40000 ALTER TABLE `reflex_merchant` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantcontact`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantcontact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantcontact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `other` longtext NOT NULL,
+  `address1` varchar(255) NOT NULL,
+  `address2` varchar(255) NOT NULL,
+  `address3` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `postcode` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `longitude` decimal(10,6) DEFAULT NULL,
+  `latitude` decimal(10,6) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantcontact_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_c45582e7` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantcontact`
+--
+
+LOCK TABLES `reflex_merchantcontact` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantcontact` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantcontact` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantcoupon`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantcoupon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantcoupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `code` varchar(20) NOT NULL,
+  `coupon_type` int(11) NOT NULL,
+  `coupon_product_id` int(11) DEFAULT NULL,
+  `coupon_category_id` int(11) DEFAULT NULL,
+  `coupon_user_id` int(11) DEFAULT NULL,
+  `coupon_min_purchase` decimal(11,2) DEFAULT NULL,
+  `discount_type` int(11) NOT NULL,
+  `coupon_value` decimal(11,2) DEFAULT NULL,
+  `coupon_limit_per_user` int(11) DEFAULT NULL,
+  `valid_from` datetime DEFAULT NULL,
+  `valid_to` datetime DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reflex_merchantcoupon_merchant_id_774b0a9535cf8efc_uniq` (`merchant_id`,`code`),
+  KEY `reflex_merchantcoupon_4206e65a` (`merchant_id`),
+  KEY `reflex_merchantcoupon_09bb5fb3` (`code`),
+  KEY `reflex_merchantcoupon_d3c9a4ee` (`coupon_product_id`),
+  KEY `reflex_merchantcoupon_a91e2723` (`coupon_category_id`),
+  KEY `reflex_merchantcoupon_fcad4754` (`coupon_user_id`),
+  CONSTRAINT `coupon_category_id_refs_id_d7cbde1f` FOREIGN KEY (`coupon_category_id`) REFERENCES `reflex_storelevelcategory` (`id`),
+  CONSTRAINT `coupon_product_id_refs_id_a92d2ba3` FOREIGN KEY (`coupon_product_id`) REFERENCES `reflex_product` (`id`),
+  CONSTRAINT `coupon_user_id_refs_id_3a45cd28` FOREIGN KEY (`coupon_user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `merchant_id_refs_id_6d25d4d8` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantcoupon`
+--
+
+LOCK TABLES `reflex_merchantcoupon` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantcoupon` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantcoupon` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantgenericpage`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantgenericpage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantgenericpage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `content` longtext NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reflex_merchantgenericpage_merchant_id_78593ee10bc3de0f_uniq` (`merchant_id`,`name`),
+  KEY `reflex_merchantgenericpage_4206e65a` (`merchant_id`),
+  KEY `reflex_merchantgenericpage_4da47e07` (`name`),
+  CONSTRAINT `merchant_id_refs_id_dd0314fa` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantgenericpage`
+--
+
+LOCK TABLES `reflex_merchantgenericpage` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantgenericpage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantgenericpage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantimage`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantimage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantimage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantimage_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_6682006d` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantimage`
+--
+
+LOCK TABLES `reflex_merchantimage` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantimage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantimage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantmolgateway`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantmolgateway`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantmolgateway` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `mol_merchant_id` varchar(50) NOT NULL,
+  `mol_vkey` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantmolgateway_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_a184e51e` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantmolgateway`
+--
+
+LOCK TABLES `reflex_merchantmolgateway` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantmolgateway` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantmolgateway` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantnote`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantnote`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantnote` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `notes` longtext NOT NULL,
+  `created` datetime NOT NULL,
+  `created_by_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantnote_4206e65a` (`merchant_id`),
+  KEY `reflex_merchantnote_0c98d849` (`created_by_id`),
+  CONSTRAINT `created_by_id_refs_id_b921dd71` FOREIGN KEY (`created_by_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `merchant_id_refs_id_565144f2` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantnote`
+--
+
+LOCK TABLES `reflex_merchantnote` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantnote` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantnote` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantpromotion`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantpromotion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantpromotion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `published_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantpromotion_6f33f001` (`category_id`),
+  CONSTRAINT `category_id_refs_id_8308ecb2` FOREIGN KEY (`category_id`) REFERENCES `reflex_toplevelcategory` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantpromotion`
+--
+
+LOCK TABLES `reflex_merchantpromotion` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantpromotion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantpromotion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantpromotionitem`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantpromotionitem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantpromotionitem` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `promotion_id` int(11) NOT NULL,
+  `merchant_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantpromotionitem_a38837b6` (`promotion_id`),
+  KEY `reflex_merchantpromotionitem_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_a343b744` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `promotion_id_refs_id_674f0d84` FOREIGN KEY (`promotion_id`) REFERENCES `reflex_merchantpromotion` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantpromotionitem`
+--
+
+LOCK TABLES `reflex_merchantpromotionitem` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantpromotionitem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantpromotionitem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantshippingoption`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantshippingoption`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantshippingoption` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `rate_name` varchar(50) NOT NULL,
+  `rate_value` decimal(11,2) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantshippingoption_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_3a544528` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantshippingoption`
+--
+
+LOCK TABLES `reflex_merchantshippingoption` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantshippingoption` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantshippingoption` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantspecification`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantspecification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantspecification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `heading` varchar(80) NOT NULL,
+  `data_type` int(11) NOT NULL,
+  `value` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_merchantspecification_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_684bd8fa` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantspecification`
+--
+
+LOCK TABLES `reflex_merchantspecification` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantspecification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_merchantspecification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_merchantuser`
+--
+
+DROP TABLE IF EXISTS `reflex_merchantuser`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_merchantuser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`),
+  KEY `reflex_merchantuser_4206e65a` (`merchant_id`),
+  CONSTRAINT `merchant_id_refs_id_2810b65b` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `user_id_refs_id_96c64ad8` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_merchantuser`
+--
+
+LOCK TABLES `reflex_merchantuser` WRITE;
+/*!40000 ALTER TABLE `reflex_merchantuser` DISABLE KEYS */;
+INSERT INTO `reflex_merchantuser` VALUES (1,1,1);
+/*!40000 ALTER TABLE `reflex_merchantuser` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_photo`
+--
+
+DROP TABLE IF EXISTS `reflex_photo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_file` varchar(255) DEFAULT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `used` tinyint(1) NOT NULL,
+  `tag` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_photo_d45008c9` (`image_file`),
+  KEY `reflex_photo_6ab4cc27` (`used`),
+  KEY `reflex_photo_5659cca2` (`tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_photo`
+--
+
+LOCK TABLES `reflex_photo` WRITE;
+/*!40000 ALTER TABLE `reflex_photo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_photo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_product`
+--
+
+DROP TABLE IF EXISTS `reflex_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `price` varchar(125) DEFAULT NULL,
+  `description` longtext NOT NULL,
+  `category_id` int(11),
+  `tag` varchar(255) NOT NULL,
+  `merchant_id` int(11) NOT NULL,
+  `created_by_id` int(11) NOT NULL,
+  `unit` varchar(100) NOT NULL,
+  `published_date` datetime DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `store_category_id` int(11) DEFAULT NULL,
+  `promo_sticker` varchar(100) NOT NULL,
+  `is_merchant_featured` tinyint(1) NOT NULL,
+  `is_editor_featured` tinyint(1) NOT NULL,
+  `order_priority` int(11) NOT NULL,
+  `visibility` int(11) NOT NULL,
+  `schedule_publish` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_product_4da47e07` (`name`),
+  KEY `reflex_product_6f33f001` (`category_id`),
+  KEY `reflex_product_5659cca2` (`tag`),
+  KEY `reflex_product_4206e65a` (`merchant_id`),
+  KEY `reflex_product_0c98d849` (`created_by_id`),
+  KEY `reflex_product_18b1a3bd` (`store_category_id`),
+  CONSTRAINT `category_id_refs_id_933b1afa` FOREIGN KEY (`category_id`) REFERENCES `reflex_productcategory` (`id`),
+  CONSTRAINT `created_by_id_refs_id_d30d7ea6` FOREIGN KEY (`created_by_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `merchant_id_refs_id_791088de` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `store_category_id_refs_id_2cf28647` FOREIGN KEY (`store_category_id`) REFERENCES `reflex_storelevelcategory` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_product`
+--
+
+LOCK TABLES `reflex_product` WRITE;
+/*!40000 ALTER TABLE `reflex_product` DISABLE KEYS */;
+INSERT INTO `reflex_product` VALUES (1,'EMMA - dull peach 2','','',NULL,'',1,1,'','2014-09-18 02:24:06','2014-09-18 02:24:06','2014-09-18 02:30:44',NULL,'',0,0,0,1,NULL),(2,'EMMA - burgundy','','',NULL,'',1,1,'','2014-09-18 02:24:27','2014-09-18 02:24:27','2014-09-18 02:30:55',NULL,'',0,0,0,1,NULL),(3,'EMMA - light turqoise','','',NULL,'',1,1,'','2014-09-18 02:24:57','2014-09-18 02:24:57','2014-09-18 02:31:14',3,'',0,0,0,1,NULL),(5,'Bi FIFI - pearl white','','',NULL,'',1,1,'','2014-09-18 02:28:25','2014-09-18 02:28:25','2014-09-18 02:31:31',2,'',0,0,0,1,NULL),(6,'Bi FIFI - purple','','',NULL,'',1,1,'','2014-09-18 02:28:40','2014-09-18 02:28:40','2014-09-18 02:31:41',2,'',0,0,0,1,NULL);
+/*!40000 ALTER TABLE `reflex_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productcategory`
+--
+
+DROP TABLE IF EXISTS `reflex_productcategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productcategory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productcategory`
+--
+
+LOCK TABLES `reflex_productcategory` WRITE;
+/*!40000 ALTER TABLE `reflex_productcategory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productcategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productcategoryheading`
+--
+
+DROP TABLE IF EXISTS `reflex_productcategoryheading`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productcategoryheading` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `heading` varchar(80) NOT NULL,
+  `help_text` varchar(100) NOT NULL,
+  `data_type` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_productcategoryheading_6f33f001` (`category_id`),
+  CONSTRAINT `category_id_refs_id_8b52f8f7` FOREIGN KEY (`category_id`) REFERENCES `reflex_productcategory` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productcategoryheading`
+--
+
+LOCK TABLES `reflex_productcategoryheading` WRITE;
+/*!40000 ALTER TABLE `reflex_productcategoryheading` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productcategoryheading` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productimage`
+--
+
+DROP TABLE IF EXISTS `reflex_productimage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productimage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `default_scale_type` int(11) NOT NULL,
+  `image_file` varchar(255) NOT NULL,
+  `photo_id` int(11) DEFAULT NULL,
+  `is_primary` tinyint(1) NOT NULL,
+  `order_priority` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_productimage_7f1b40ad` (`product_id`),
+  KEY `reflex_productimage_bc609657` (`photo_id`),
+  CONSTRAINT `photo_id_refs_id_909318d9` FOREIGN KEY (`photo_id`) REFERENCES `reflex_photo` (`id`),
+  CONSTRAINT `product_id_refs_id_8d73fa2d` FOREIGN KEY (`product_id`) REFERENCES `reflex_product` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productimage`
+--
+
+LOCK TABLES `reflex_productimage` WRITE;
+/*!40000 ALTER TABLE `reflex_productimage` DISABLE KEYS */;
+INSERT INTO `reflex_productimage` VALUES (1,1,3,'product_images/emma-dull-peach2.jpg',NULL,0,0),(2,2,3,'product_images/emma-burgundy.jpg',NULL,0,0),(3,3,3,'product_images/emma-light-turquoise.jpg',NULL,0,0),(4,5,3,'product_images/bi-fifi-pearl-white.jpg',NULL,0,0),(5,6,3,'product_images/bi-fifi-purple.jpg',NULL,0,0);
+/*!40000 ALTER TABLE `reflex_productimage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productsku`
+--
+
+DROP TABLE IF EXISTS `reflex_productsku`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productsku` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `code` varchar(13) NOT NULL,
+  `quantity` int(10) unsigned NOT NULL,
+  `avail_from` datetime DEFAULT NULL,
+  `avail_to` datetime DEFAULT NULL,
+  `order_priority` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_productsku_7f1b40ad` (`product_id`),
+  KEY `reflex_productsku_09bb5fb3` (`code`),
+  CONSTRAINT `product_id_refs_id_2f4d3337` FOREIGN KEY (`product_id`) REFERENCES `reflex_product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productsku`
+--
+
+LOCK TABLES `reflex_productsku` WRITE;
+/*!40000 ALTER TABLE `reflex_productsku` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productsku` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productskuattr`
+--
+
+DROP TABLE IF EXISTS `reflex_productskuattr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productskuattr` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_sku_id` int(11) NOT NULL,
+  `variant_value_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_productskuattr_6ddef35e` (`product_sku_id`),
+  KEY `reflex_productskuattr_d1e0ed3b` (`variant_value_id`),
+  CONSTRAINT `product_sku_id_refs_id_a2738c19` FOREIGN KEY (`product_sku_id`) REFERENCES `reflex_productsku` (`id`),
+  CONSTRAINT `variant_value_id_refs_id_ad44f756` FOREIGN KEY (`variant_value_id`) REFERENCES `reflex_variantvalue` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productskuattr`
+--
+
+LOCK TABLES `reflex_productskuattr` WRITE;
+/*!40000 ALTER TABLE `reflex_productskuattr` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productskuattr` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productstatus`
+--
+
+DROP TABLE IF EXISTS `reflex_productstatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productstatus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `valid_from` datetime NOT NULL,
+  `valid_till` datetime DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_productstatus_7f1b40ad` (`product_id`),
+  KEY `reflex_productstatus_afbb987d` (`location_id`),
+  KEY `reflex_productstatus_48fb58bb` (`status_id`),
+  CONSTRAINT `location_id_refs_id_16b7ebb3` FOREIGN KEY (`location_id`) REFERENCES `reflex_location` (`id`),
+  CONSTRAINT `product_id_refs_id_f8944285` FOREIGN KEY (`product_id`) REFERENCES `reflex_product` (`id`),
+  CONSTRAINT `status_id_refs_id_05419519` FOREIGN KEY (`status_id`) REFERENCES `reflex_productstatusvalue` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productstatus`
+--
+
+LOCK TABLES `reflex_productstatus` WRITE;
+/*!40000 ALTER TABLE `reflex_productstatus` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productstatus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productstatusvalue`
+--
+
+DROP TABLE IF EXISTS `reflex_productstatusvalue`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productstatusvalue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status_text` varchar(80) NOT NULL,
+  `sentiment` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productstatusvalue`
+--
+
+LOCK TABLES `reflex_productstatusvalue` WRITE;
+/*!40000 ALTER TABLE `reflex_productstatusvalue` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productstatusvalue` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_productvarianttype`
+--
+
+DROP TABLE IF EXISTS `reflex_productvarianttype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_productvarianttype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `variant_type_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_productvarianttype_7f1b40ad` (`product_id`),
+  KEY `reflex_productvarianttype_f0895c7e` (`variant_type_id`),
+  CONSTRAINT `product_id_refs_id_53a41ef6` FOREIGN KEY (`product_id`) REFERENCES `reflex_product` (`id`),
+  CONSTRAINT `variant_type_id_refs_id_43fa45ed` FOREIGN KEY (`variant_type_id`) REFERENCES `reflex_varianttype` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_productvarianttype`
+--
+
+LOCK TABLES `reflex_productvarianttype` WRITE;
+/*!40000 ALTER TABLE `reflex_productvarianttype` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_productvarianttype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_shared`
+--
+
+DROP TABLE IF EXISTS `reflex_shared`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_shared` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_type_id` int(11) NOT NULL,
+  `object_id` int(10) unsigned NOT NULL,
+  `preview_text` varchar(120) NOT NULL,
+  `preview_image` varchar(100) NOT NULL,
+  `shared_by_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_shared_37ef4eb4` (`content_type_id`),
+  KEY `reflex_shared_30a2d3b7` (`shared_by_id`),
+  CONSTRAINT `content_type_id_refs_id_b1ee9394` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `shared_by_id_refs_id_397cd256` FOREIGN KEY (`shared_by_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_shared`
+--
+
+LOCK TABLES `reflex_shared` WRITE;
+/*!40000 ALTER TABLE `reflex_shared` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_shared` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_skuprice`
+--
+
+DROP TABLE IF EXISTS `reflex_skuprice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_skuprice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sku_id` int(11) NOT NULL,
+  `retail_price` decimal(11,2) NOT NULL,
+  `sale_price` decimal(11,2) DEFAULT NULL,
+  `on_sale` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_skuprice_b2b8005a` (`sku_id`),
+  CONSTRAINT `sku_id_refs_id_6495915d` FOREIGN KEY (`sku_id`) REFERENCES `reflex_productsku` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_skuprice`
+--
+
+LOCK TABLES `reflex_skuprice` WRITE;
+/*!40000 ALTER TABLE `reflex_skuprice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_skuprice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_specification`
+--
+
+DROP TABLE IF EXISTS `reflex_specification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_specification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `order` int(11) DEFAULT NULL,
+  `category_heading_id` int(11) DEFAULT NULL,
+  `heading` varchar(80) NOT NULL,
+  `data_type` int(11) NOT NULL,
+  `value` longtext NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_specification_7f1b40ad` (`product_id`),
+  KEY `reflex_specification_842aae0b` (`category_heading_id`),
+  CONSTRAINT `category_heading_id_refs_id_d635ed15` FOREIGN KEY (`category_heading_id`) REFERENCES `reflex_productcategoryheading` (`id`),
+  CONSTRAINT `product_id_refs_id_56852254` FOREIGN KEY (`product_id`) REFERENCES `reflex_product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_specification`
+--
+
+LOCK TABLES `reflex_specification` WRITE;
+/*!40000 ALTER TABLE `reflex_specification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_specification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_stockimage`
+--
+
+DROP TABLE IF EXISTS `reflex_stockimage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_stockimage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_file` varchar(255) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_stockimage_d45008c9` (`image_file`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_stockimage`
+--
+
+LOCK TABLES `reflex_stockimage` WRITE;
+/*!40000 ALTER TABLE `reflex_stockimage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_stockimage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_storelevelcategory`
+--
+
+DROP TABLE IF EXISTS `reflex_storelevelcategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_storelevelcategory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_storelevelcategory_4206e65a` (`merchant_id`),
+  KEY `reflex_storelevelcategory_4da47e07` (`name`),
+  KEY `reflex_storelevelcategory_410d0aac` (`parent_id`),
+  CONSTRAINT `merchant_id_refs_id_88e46b60` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `parent_id_refs_id_e69c3f1a` FOREIGN KEY (`parent_id`) REFERENCES `reflex_toplevelcategory` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_storelevelcategory`
+--
+
+LOCK TABLES `reflex_storelevelcategory` WRITE;
+/*!40000 ALTER TABLE `reflex_storelevelcategory` DISABLE KEYS */;
+INSERT INTO `reflex_storelevelcategory` VALUES (1,1,'Shawl',4,'2014-09-18 02:21:44','2014-09-18 02:21:44'),(2,1,'Dresses',4,'2014-09-18 02:21:57','2014-09-18 02:21:57'),(3,1,'Tops',4,'2014-09-18 02:22:29','2014-09-18 02:22:29');
+/*!40000 ALTER TABLE `reflex_storelevelcategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_targeteduser`
+--
+
+DROP TABLE IF EXISTS `reflex_targeteduser`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_targeteduser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `broadcast_request_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_targeteduser_567e064a` (`broadcast_request_id`),
+  KEY `reflex_targeteduser_6340c63c` (`user_id`),
+  CONSTRAINT `broadcast_request_id_refs_id_8f6298ab` FOREIGN KEY (`broadcast_request_id`) REFERENCES `reflex_campaign` (`id`),
+  CONSTRAINT `user_id_refs_id_1880f20e` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_targeteduser`
+--
+
+LOCK TABLES `reflex_targeteduser` WRITE;
+/*!40000 ALTER TABLE `reflex_targeteduser` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_targeteduser` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_templateimage`
+--
+
+DROP TABLE IF EXISTS `reflex_templateimage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_templateimage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `image_file` varchar(255) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `created_by_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_templateimage_4206e65a` (`merchant_id`),
+  KEY `reflex_templateimage_d45008c9` (`image_file`),
+  KEY `reflex_templateimage_0c98d849` (`created_by_id`),
+  CONSTRAINT `created_by_id_refs_id_b64b5d82` FOREIGN KEY (`created_by_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `merchant_id_refs_id_f0304bc1` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_templateimage`
+--
+
+LOCK TABLES `reflex_templateimage` WRITE;
+/*!40000 ALTER TABLE `reflex_templateimage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_templateimage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_toplevelcategory`
+--
+
+DROP TABLE IF EXISTS `reflex_toplevelcategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_toplevelcategory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_toplevelcategory`
+--
+
+LOCK TABLES `reflex_toplevelcategory` WRITE;
+/*!40000 ALTER TABLE `reflex_toplevelcategory` DISABLE KEYS */;
+INSERT INTO `reflex_toplevelcategory` VALUES (1,'Lifestyle','2014-09-18 02:13:47','2014-09-18 02:13:47'),(2,'Food','2014-09-18 02:13:50','2014-09-18 02:13:50'),(3,'Health and Fitness','2014-09-18 02:13:55','2014-09-18 02:13:55'),(4,'Clothing','2014-09-18 02:14:05','2014-09-18 02:14:05');
+/*!40000 ALTER TABLE `reflex_toplevelcategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_userprofile`
+--
+
+DROP TABLE IF EXISTS `reflex_userprofile`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_userprofile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
+  `address1` varchar(255) NOT NULL,
+  `address2` varchar(255) NOT NULL,
+  `address3` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `postcode` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`),
+  CONSTRAINT `user_id_refs_id_e2f58d28` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_userprofile`
+--
+
+LOCK TABLES `reflex_userprofile` WRITE;
+/*!40000 ALTER TABLE `reflex_userprofile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_userprofile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_userview`
+--
+
+DROP TABLE IF EXISTS `reflex_userview`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_userview` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_type_id` int(11) NOT NULL,
+  `object_id` int(10) unsigned NOT NULL,
+  `referral_content_type_id` int(11) NOT NULL,
+  `referral_object_id` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reflex_userview_37ef4eb4` (`content_type_id`),
+  KEY `reflex_userview_69e30c5b` (`referral_content_type_id`),
+  CONSTRAINT `content_type_id_refs_id_d4555078` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `referral_content_type_id_refs_id_d4555078` FOREIGN KEY (`referral_content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_userview`
+--
+
+LOCK TABLES `reflex_userview` WRITE;
+/*!40000 ALTER TABLE `reflex_userview` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_userview` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_varianttype`
+--
+
+DROP TABLE IF EXISTS `reflex_varianttype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_varianttype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reflex_varianttype_merchant_id_643e19cc1f9b0c42_uniq` (`merchant_id`,`name`),
+  KEY `reflex_varianttype_4206e65a` (`merchant_id`),
+  KEY `reflex_varianttype_4da47e07` (`name`),
+  CONSTRAINT `merchant_id_refs_id_66264420` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_varianttype`
+--
+
+LOCK TABLES `reflex_varianttype` WRITE;
+/*!40000 ALTER TABLE `reflex_varianttype` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_varianttype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_variantvalue`
+--
+
+DROP TABLE IF EXISTS `reflex_variantvalue`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_variantvalue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `variant_type_id` int(11) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reflex_variantvalue_variant_type_id_8c06d36d11147b3_uniq` (`variant_type_id`,`value`),
+  KEY `reflex_variantvalue_f0895c7e` (`variant_type_id`),
+  CONSTRAINT `variant_type_id_refs_id_14fec3c2` FOREIGN KEY (`variant_type_id`) REFERENCES `reflex_varianttype` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_variantvalue`
+--
+
+LOCK TABLES `reflex_variantvalue` WRITE;
+/*!40000 ALTER TABLE `reflex_variantvalue` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_variantvalue` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reflex_websitetemplate`
+--
+
+DROP TABLE IF EXISTS `reflex_websitetemplate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reflex_websitetemplate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(11) NOT NULL,
+  `json` longtext NOT NULL,
+  `created` datetime NOT NULL,
+  `created_by_id` int(11) NOT NULL,
+  `updated` datetime NOT NULL,
+  `updated_by_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `merchant_id` (`merchant_id`),
+  KEY `reflex_websitetemplate_0c98d849` (`created_by_id`),
+  KEY `reflex_websitetemplate_3aeaff6a` (`updated_by_id`),
+  CONSTRAINT `created_by_id_refs_id_bff9dad3` FOREIGN KEY (`created_by_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `merchant_id_refs_id_7d52f66a` FOREIGN KEY (`merchant_id`) REFERENCES `reflex_merchant` (`id`),
+  CONSTRAINT `updated_by_id_refs_id_bff9dad3` FOREIGN KEY (`updated_by_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reflex_websitetemplate`
+--
+
+LOCK TABLES `reflex_websitetemplate` WRITE;
+/*!40000 ALTER TABLE `reflex_websitetemplate` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reflex_websitetemplate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `south_migrationhistory`
+--
+
+DROP TABLE IF EXISTS `south_migrationhistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `south_migrationhistory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_name` varchar(255) NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `applied` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `south_migrationhistory`
+--
+
+LOCK TABLES `south_migrationhistory` WRITE;
+/*!40000 ALTER TABLE `south_migrationhistory` DISABLE KEYS */;
+INSERT INTO `south_migrationhistory` VALUES (1,'reflex','0001_initial','2014-09-15 04:00:32'),(2,'reflex','0002_auto__add_photo__add_productvarianttype__add_targeteduser__add_skupric','2014-09-15 04:01:41'),(3,'reflex','0003_auto__chg_field_product_category','2014-09-18 02:04:13');
+/*!40000 ALTER TABLE `south_migrationhistory` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-09-18  2:37:15

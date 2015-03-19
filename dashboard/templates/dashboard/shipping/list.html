@@ -1,0 +1,29 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load staticfiles %}
+
+{% block head_title %} Shipping Options {% endblock %}
+
+{% block content %}
+    <h3>Shipping Options</h3>
+    {% include 'dashboard/partials/messages.html' %}
+    <table class="table table-striped">
+        <thead>
+            <th>#</th>
+            <th>Rate name</th>
+            <th>Rate value</th>
+            <th>Region</th>
+            <th></th>
+        </thead>
+    {% for o in shipping_options %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ o.rate_name }}</td>
+            <td>{{ o.rate_value }}</td>
+            <td>{{ o.shipping_region_text }}</td>
+            <td><a href="{% url 'dashboard:edit_shipping_option' pk=o.id %}">Edit</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'dashboard:new_shipping_option' %}" class="btn btn-success">New Shipping Option</a>
+{% endblock %}

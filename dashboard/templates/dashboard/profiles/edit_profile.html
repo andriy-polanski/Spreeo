@@ -1,0 +1,213 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load thumbnail %}
+
+{% block extrastyles %}
+<style type="text/css">
+ul.errorlist {
+   list-style: none;  
+}
+</style>    
+{% endblock %}
+
+{% block head_title %}Merchant Profile{% endblock %}
+
+{% block content %}
+    <h3>Merchant Profile</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <form id="id_profile_form" action="{% url 'dashboard:edit_profile' %}" method="POST"  enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                
+                {% if errors_found %}
+                <div class="alert alert-danger" role="alert">Correct the errors below</div>
+                {% endif %}
+
+                <section class="panel">
+                    <header class="panel-heading">Basic Information</header>
+                    <div class="panel-body">
+                        {% include "dashboard/field.html" with field=profile_form.company_name control_width="col-lg-10" %}
+                        {% include "dashboard/field.html" with field=profile_form.company_short_description control_width="col-lg-10" %}
+                        {% include "dashboard/field.html" with field=profile_form.company_description control_width="col-lg-10" %}
+                        {% include "dashboard/field.html" with field=profile_form.company_registration_no control_width="col-lg-4" %}
+                    
+                        {% with profile_form.slug as field %}
+                        <div class="form-group {% if field.errors %} has-error {% endif %}" id="div_{{field.auto_id}}">
+                            <label for="name" class="col-lg-2 control-label">{{ field.label}}{% if field.field.required %}*{% endif %}</label>
+                            <div class="col-lg-10">
+                                {{ field|attr:"style:width:250px"|addcss:"form-control"}}
+                                <span class="help-block">
+                                Your shop will be accessible at:<br/>
+                                https://shop.gobazaar.com.my/<span id="id_slug_value"></span>
+                                </span>
+                                {% if field.errors %}
+                                <span class="help-block">{{ field.errors }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endwith %}
+                    
+                        {% include "dashboard/field.html" with field=profile_form.category control_width="col-lg-4" %}
+
+                        <div class="form-group">
+                            <label for="name" class="col-lg-2 control-label">Logo: </label>
+                            <div class="col-lg-10 controls">
+                                {% if merchant_profile.logo %}
+                                    {% thumbnail merchant_profile.logo "100x100" crop="center" as im %}
+                                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"><br/>
+                                    {% endthumbnail %}
+                                {% endif %}
+                                {{ profile_form.logo|addcss:"clearablefileinput"}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% for contact_form in contact_forms %}
+                <section class="panel">
+                    <header class="panel-heading">Contact - {{contact_form.instance.label}}</header>
+                    <div class="panel-body">
+                        {% include "dashboard/field.html" with field=contact_form.label control_width="col-lg-4" %}
+                        {% if contact_form.instance.type == CONTACT_TYPE_PHONE %}
+                            {% include "dashboard/field.html" with field=contact_form.phone control_width="col-lg-4" %}
+                        {% endif %}
+                        {% if contact_form.instance.type == CONTACT_TYPE_EMAIL %}
+                            {% include "dashboard/field.html" with field=contact_form.email control_width="col-lg-4" %}
+                        {% endif %}
+                        {% if contact_form.instance.type == CONTACT_TYPE_URL or contact_form.instance.type == CONTACT_TYPE_FACEBOOK or contact_form.instance.type == CONTACT_TYPE_BLOG %}
+                            {% include "dashboard/field.html" with field=contact_form.url control_width="col-lg-4" %}
+                        {% endif %}
+                        {% if contact_form.instance.type == CONTACT_TYPE_ADDRESS %}
+                            {% include "dashboard/field.html" with field=contact_form.address1 control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.address2 control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.address3 control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.city_town control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.district control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.postcode control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.state control_width="col-lg-4" %}
+                            {% include "dashboard/field.html" with field=contact_form.country control_width="col-lg-4" %}
+                        {% endif %}
+                        {% if contact_form.instance.type == CONTACT_TYPE_OTHER %}
+                            {% include "dashboard/field.html" with field=contact_form.other control_width="col-lg-4" %}
+                        {% endif %}
+                        {% include "dashboard/field.html" with field=contact_form.to_delete control_width="col-lg-4" %}
+                    </div>
+                </section>
+                {% endfor %}
+                <section class="panel" id="new-contact">
+                    <header class="panel-heading">Add Contact</header>
+                    <div class="panel-body">
+                        <a name="new_contact"></a>
+                        {% include "dashboard/field.html" with field=blank_contact_form.type control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.label control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.phone control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.email control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.url control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.other control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.address1 control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.address2 control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.address3 control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.city_town control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.district control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.postcode control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.state control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=blank_contact_form.country control_width="col-lg-4" %}
+                    </div>
+                </section>
+                <button type="submit" class="btn btn-default btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+$(document).ready(function(event) {
+    ALL_FIELDS = [
+        '#div_id_blank-label',
+        '#div_id_blank-phone',
+        '#div_id_blank-email',
+        '#div_id_blank-url',
+        '#div_id_blank-other',
+        '#div_id_blank-address1',
+        '#div_id_blank-address2',
+        '#div_id_blank-address3',
+        '#div_id_blank-city_town',
+        '#div_id_blank-district',
+        '#div_id_blank-postcode',
+        '#div_id_blank-state',
+        '#div_id_blank-country',
+        '#div_id_blank-longitude',
+        '#div_id_blank-latitude'
+    ]
+
+    function hideAll() {
+        $(ALL_FIELDS).each(function (i) {
+            $(ALL_FIELDS[i]).hide();
+        });
+    }
+
+    CONTACT_TYPE_PHONE = 1;
+    CONTACT_TYPE_EMAIL = 2;
+    CONTACT_TYPE_URL = 3;
+    CONTACT_TYPE_ADDRESS = 4;
+    CONTACT_TYPE_OTHER = 5;
+    CONTACT_TYPE_FACEBOOK = 6;
+    CONTACT_TYPE_BLOG = 7;
+
+    CONTACT_FIELDS = { };
+    CONTACT_FIELDS[CONTACT_TYPE_PHONE] = ['#div_id_blank-phone'];
+    CONTACT_FIELDS[CONTACT_TYPE_EMAIL] = ['#div_id_blank-email'];
+    CONTACT_FIELDS[CONTACT_TYPE_URL] = ['#div_id_blank-url'];
+    CONTACT_FIELDS[CONTACT_TYPE_ADDRESS] = [
+        '#div_id_blank-address1',
+        '#div_id_blank-address2',
+        '#div_id_blank-address3',
+        '#div_id_blank-city_town',
+        '#div_id_blank-district',
+        '#div_id_blank-postcode',
+        '#div_id_blank-state',
+        '#div_id_blank-country',
+        '#div_id_blank-longitude',
+        '#div_id_blank-latitude'
+    ];
+    CONTACT_FIELDS[CONTACT_TYPE_OTHER] = ['#div_id_blank-other'];
+    CONTACT_FIELDS[CONTACT_TYPE_FACEBOOK] = ['#div_id_blank-url'];
+    CONTACT_FIELDS[CONTACT_TYPE_BLOG] = ['#div_id_blank-url'];
+
+    function updateBlank(initial) {
+        hideAll();
+        if (!initial) {
+            $("#new-contact input").not("#id_blank-label").val("");
+            $("#new-contact .errorlist").remove();
+            $("#new-contact .has-error").removeClass("has-error");
+        }
+        var v = $("#id_blank-type").val();
+        if (v) {
+            $('#div_id_blank-label').show();
+            var fields = CONTACT_FIELDS[parseInt(v)];
+            $(fields).each(function (i) {
+                $(fields[i]).show();
+            });
+        }
+    }
+    
+    $("#id_blank-type").change(function () {
+        updateBlank(false);
+    });
+
+    updateBlank(true);
+    
+     $("#id_slug").on('input', function() {
+        $("#id_slug_value").text(
+                $(this).val()
+        );
+    });   
+    var slug = $("#id_slug").val();
+    if (slug) {
+        $("#id_slug_value").text(slug);
+    } else {
+        $("#id_slug_value").text("&lt;your vanity URL&gt;");
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load thumbnail %}
+
+{% block extrastyles %}
+    <style type="text/css">
+        ul.errorlist {
+            list-style: none;
+        }
+    </style>
+{% endblock %}
+
+{% block head_title %}
+    {% if form.instance.id %}
+        {{ form.instance.rate_name }}
+    {% else %}
+        Add shipping option
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if form.instance.id %}
+        <h3>Edit Shipping Option: {{ form.instance.rate_name }}</h3>
+    {% else %}
+        <h3>Add Shipping Option</h3>
+    {% endif %}
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{% url 'dashboard:shipping_options' %}" class="btn btn-default">Go back</a>
+                    {% if form.instance.pk %}
+                        <a href="{% url 'dashboard:delete_shipping_option' form.instance.pk %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+                <div class="clearfix"></div>
+                {% include 'dashboard/partials/messages.html' %}
+                <section class="panel">
+                    <div class="panel-body">
+                        {% include "dashboard/field.html" with field=form.rate_name control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=form.rate_value control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=form.shipping_region control_width="col-lg-4" %}
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+{% endblock %}

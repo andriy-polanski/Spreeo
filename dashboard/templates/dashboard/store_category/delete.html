@@ -1,0 +1,12 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block head_title %} Delete Store Category {% endblock %}
+
+{% block content %}
+
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ instance.name }}"?</p>
+        <input type="submit" value="Confirm" />&nbsp;&nbsp;<a href="{% url 'dashboard:edit_store_category' instance.id %}">Cancel</a>
+    </form>
+
+{% endblock %}

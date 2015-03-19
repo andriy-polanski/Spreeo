@@ -1,0 +1,10 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ product }}"?</p>
+        <input type="submit" value="Confirm" />&nbsp;&nbsp;<a href="{% url 'dashboard:product_edit' product.id %}">Cancel</a>
+    </form>
+
+{% endblock %}

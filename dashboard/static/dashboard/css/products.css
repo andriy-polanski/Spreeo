@@ -1,0 +1,122 @@
+.product-list-item{
+    margin-bottom: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.product-list-item:hover .product-detail-mask{
+    top: 0;
+}
+
+.product-list-item img{
+    width: 100%;
+    height: auto;
+}
+
+.product-detail-mask{
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    top: 100%;
+    background-color: black;
+    z-index: 1000;
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    transition: top 0.3s;
+    -webkit-transition: top 0.3s;
+}
+
+.product-detail-mask a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+ul.errorlist{
+    list-style: none;
+    color: red;
+}
+
+
+div.messages{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.upload-image {
+    margin: 0;
+    z-index: 1;
+    position: relative;
+}
+
+.upload-image li {
+    display: block;
+    width: 200px;
+    margin: 0 1% 2%;
+    float: left;
+    text-align: center;
+}
+
+.upload-image div {
+    background: #fff;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    z-index: 200;
+}
+
+.upload-image li > div {
+    background: #ccc;
+    margin-bottom: 10px;
+}
+.upload-image .image-input {
+    z-index: 800;
+}
+
+.upload-image img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    max-height: 200px;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+    left: 0;
+}
+
+.upload-image .image-input button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.upload-image .input-field {
+    position: relative;
+    z-index: 1000;
+    opacity: 0;
+}
+
+.upload-image .input-field input {
+    border-width: 0;
+    direction: ltr;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+}
+
+.sku-table-container{
+    width: 100%;
+    overflow: auto;
+}
+
+.sku-table-btn-container{
+    padding: 10px;
+    padding-right: 15px;
+}

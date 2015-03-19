@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+{%  load staticfiles %}
+{%  load dashboard_tags %}
+
+{% block layout %}
+
+    <!-- Header bar -->
+    <div class="header blue-bg">
+
+        <!-- Header logo -->
+        <a href="{% url 'dashboard:index' %}" class="logo">
+            <img src="{% static 'dashboard/img/logo-bazaar.png' %}">
+        </a>
+
+        {% include 'dashboard/partials/nav_notification.html' %}
+        {% include 'dashboard/partials/nav_topright.html' %}
+
+    </div>
+
+    <!-- Side navigation -->
+    {% include 'dashboard/partials/nav_sidebar.html' %}
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+  	    <div class="wrapper">
+
+            {% block content %}{% endblock %}
+
+        </div>
+    </div>
+
+{% endblock %}

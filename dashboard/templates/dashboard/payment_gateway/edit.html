@@ -1,0 +1,42 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load thumbnail %}
+
+{% block extrastyles %}
+    <style type="text/css">
+        ul.errorlist {
+            list-style: none;
+        }
+    </style>
+{% endblock %}
+
+{% block head_title %}Payment Gateway{% endblock %}
+
+{% block content %}
+    <h3>Payment Gateway</h3>
+    {% include 'dashboard/partials/messages.html' %}
+    <div class="row">
+        <div class="col-sm-12">
+            <form id="id_payment_gateway_form" action="{% url 'dashboard:edit_payment_gateway' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a class="btn btn-default" href="{% url 'dashboard:edit_payment_gateway' %}">Cancel</a>
+                </div>
+            
+                <div class="clearfix"></div>
+            
+                {% if errors_found %}
+                <div class="alert alert-danger" role="alert">Correct the errors below</div>
+                {% endif %}
+                <section class="panel">
+                    <header class="panel-heading">MOL Payment Gateway Configuration</header>
+                    <div class="panel-body">
+                        {% include "dashboard/field.html" with field=mol_gateway_form.mol_merchant_id control_width="col-lg-4" %}
+                        {% include "dashboard/field.html" with field=mol_gateway_form.mol_vkey control_width="col-lg-4" %}
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+{% endblock %}

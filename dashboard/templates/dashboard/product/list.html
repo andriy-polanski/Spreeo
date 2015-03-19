@@ -1,0 +1,72 @@
+{% extends 'dashboard/layout.html' %}
+{%  load staticfiles %}
+
+{% block extrastyles %}
+    <link href="{% static 'dashboard/css/products.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <h3>Products</h3>
+
+    <div class="row">
+
+        {% if object_list and object_list|length > 0 %}
+
+            {% for product in object_list %}
+
+                <div class="product-list-item col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                    <a href="{% url 'dashboard:product_edit' product.id %}">
+                        <img class="img-responsive product-image" src="{{ product.preview_image.url }}" onerror="this.src='{% static 'dashboard/img/noimage.png' %}';"/>
+                    </a>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            {{ product.name }}
+                        </div>
+                    </div>
+
+                </div>
+
+                {% if forloop.counter != 1 %}
+                    {% if forloop.counter|divisibleby:6 %}
+                        <div class="clearfix visible-lg-block"></div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:4 %}
+                        <div class="clearfix visible-md-block"></div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:3 %}
+                        <div class="clearfix visible-sm-block"></div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="clearfix visible-xs-block"></div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+        {% else %}
+            <div class="col-lg-12 text-center">
+                <h4>There is no product. You can add new product <a href="{% url 'dashboard:product_new' %}">here</a>.</h4>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+
+
+{% block onbodyload %}
+    var resizeImages = function(){
+        $('.product-list-item .product-image').each(function(){
+            var cw = $(this).width() * 1.5;
+            $(this).css({'height' : cw+'px'});
+        });
+    };
+
+    $(window).resize(function(){
+        resizeImages();
+    });
+
+    resizeImages();
+
+{% endblock %}
